@@ -19,9 +19,9 @@
             <p class="report-date">Report Date: 12:00 - 09/06/19</p>
         </div>
         <table>
-            <tr>
+            <tr th:each="report_info: ${reportInfo}">
                 <th style="text-align: right; width: 20px">No.</th>
-                <th style="width: 65px">Conf. No.</th>
+                <th style="width: 65px" th:text="${report_info?.confirmationNumber}">${report_info?.confirmationNumber}</th>
                 <th style="width: 120px">Travel Agent / Company</th>
                 <th style="text-align: right; width: 30px">Room</th>
                 <th style="width: 35px">R.Type</th>
