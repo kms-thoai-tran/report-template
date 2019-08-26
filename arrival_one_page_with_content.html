@@ -2,120 +2,126 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <title>Title</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400,900,700,500,300,100);
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+        }
+          html,
+          body {
+            font-size: 10px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: #3E4345;
+          }
+          .container {
+            min-height: 92vh;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 3em;
+          }
+          header {
+            text-align: left;
+          }
+          header img {
+            height: 5.6em;
+            display: block;
+            margin: 0 auto 0.7em;
+          }
+          header .page-title {
+            font-size: 2.5em;
+            font-family: 'Playfair Display', serif;
+            color: #3E4345;
+            text-transform: uppercase;
+            text-align: center;
+          }
+          .logo .logo-title {
+            color: #2B3A8B;
+            font-weight: bold;
+          }
+          footer {
+            flex-shrink: 0;
+            text-align: center;
+          }
+          footer .page-number {
+            color: #919699;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 1.3em;
+          }
+          main .report-info {
+            margin: 2.1em 0;
+            color: #5E6366;
+          }
+          main .report-info p {
+            display: inline-block;
+            margin-bottom: 2.1em;
+          }
+          main .report-info .filter-date {
+            float: left;
+          }
+          main .report-info .report-date {
+            float: right;
+          }
+          table {
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed;
+          }
+          th,
+          td {
+            padding: 0.85em;
+            font-style: normal;
+            font-weight: normal;
+          }
+          th {
+            text-align: left;
+            color: #9d9ea2;
+            background: #f2f3f5;
+          }
+          td {
+            vertical-align: baseline;
+            word-wrap: break-word;
+          }
+          thead th {
+            border: 0.1em solid #8c8e8d;
+          }
+          tbody tr:first-child td {
+            border-top: none;
+          }
+
+          tbody td {
+            border: 0.01em solid #C6CACC;
+          }
+          tfoot {
+            background: #f2f3f5;
+            font-weight: 500;
+            color: black;
+          }
+          tfoot tr:first-child,
+          tfoot tr:last-child {
+            border-top: 0.2em solid #C6CACC;
+            border-bottom: 0.2em solid rgb(253, 254, 255);
+          }
+          @media print
+          {
+            .container {
+              padding: 0;
+            }
+          }
+          @page {
+            @bottom-center {
+              content: 'Page ' counter(page);
+              color: #919699;
+              font-style: normal;
+              font-weight: 500;
+              font-size: 1.3em;
+              }
+          }
+    </style>
 </head>
-<style>
-  html,
-  body {
-    font-size: 10px;
-    font-family: 'IBM Plex Sans', sans-serif;
-    color: #3E4345;
-  }
-  .container {
-    min-height: 92vh;
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 3em;
-  }
-  header {
-    text-align: left;
-  }
-  header img {
-    height: 5.6em;
-    display: block;
-    margin: 0 auto 0.7em;
-  }
-  header .page-title {
-    font-size: 2.5em;
-    font-family: 'Playfair Display', serif;
-    color: #3E4345;
-    text-transform: uppercase;
-    text-align: center;
-  }
-  .logo .logo-title {
-    color: #2B3A8B;
-    font-weight: bold;
-  }
-  footer {
-    flex-shrink: 0;
-    text-align: center;
-  }
-  footer .page-number {
-    color: #919699;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 1.3em;
-  }
-  main .report-info {
-    margin: 2.1em 0;
-    color: #5E6366;
-  }
-  main .report-info p {
-    display: inline-block;
-    margin-bottom: 2.1em;
-  }
-  main .report-info .filter-date {
-    float: left;
-  }
-  main .report-info .report-date {
-    float: right;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    table-layout: fixed;
-  }
-  th,
-  td {
-    padding: 0.85em;
-    font-style: normal;
-    font-weight: normal;
-  }
-  th {
-    text-align: left;
-    color: #9d9ea2;
-    background: #f2f3f5;
-  }
-  td {
-    vertical-align: baseline;
-    word-wrap: break-word;
-  }
-  thead th {
-    border: 0.1em solid #8c8e8d;
-  }
-  tbody tr:first-child td {
-    border-top: none;
-  }
-
-  tbody td {
-    border: 0.01em solid #C6CACC;
-  }
-  tfoot {
-    background: #f2f3f5;
-    font-weight: 500;
-    color: black;
-  }
-  tfoot tr:first-child,
-  tfoot tr:last-child {
-    border-top: 0.2em solid #C6CACC;
-    border-bottom: 0.2em solid rgb(253, 254, 255);
-  }
-  @media print
-  {
-    .container {
-      padding: 0;
-    }
-  }
-  @page {
-    @bottom-center {
-      content: 'Page ' counter(page);
-      color: #919699;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 1.3em;
-	  }
-  }
-
-</style>
 <body>
 <div class="container">
     <header>
