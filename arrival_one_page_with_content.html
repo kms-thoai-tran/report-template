@@ -250,7 +250,7 @@
             <div class="logo"><img src="https://i.pinimg.com/originals/6b/17/91/6b1791e9e647dc785cd8b682a78394d5.png"
                                    alt="Logo"/></div>
             <div class="title">
-                <h1>Arrival test Thoai Tran<span class="closureNo">${test}</span></h1>
+                <h1>Arrival test #<span th:text="${test}" class="closureNo">Hello Work</span></h1>
                 <p>Begin: <span th:text="${cashregister?.beginDate}" id="invoice_date">${cashregister?.beginDate}</span><br/>
                     End: <span th:text="${cashregister?.endDate}" id="gl_date">${cashregister?.endDate}</span>
                 </p>
