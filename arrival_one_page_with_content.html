@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>${test}</title>
     <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400,900,700,500,300,100);
 
@@ -250,7 +250,7 @@
             <div class="logo"><img src="https://i.pinimg.com/originals/6b/17/91/6b1791e9e647dc785cd8b682a78394d5.png"
                                    alt="Logo"/></div>
             <div class="title">
-                <h1>ClosureNo #<span th:text="${cashregister?.closureNo}" class="closureNo">${cashregister?.closureNo}</span></h1>
+                <h1>Arrival test #<span th:text="${cashregister?.closureNo}" class="closureNo">${cashregister?.closureNo}</span></h1>
                 <p>Begin: <span th:text="${cashregister?.beginDate}" id="invoice_date">${cashregister?.beginDate}</span><br/>
                     End: <span th:text="${cashregister?.endDate}" id="gl_date">${cashregister?.endDate}</span>
                 </p>
