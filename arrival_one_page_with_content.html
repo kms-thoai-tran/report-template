@@ -1,256 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
+  <meta charset="UTF-8"/>
+  <style>
+      html, body {
+        font-size: 10px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        color: #3E4345;
+      }
+      .container {
+        min-height: 90vh;
+        padding: 1.5em 3em;
+      }
+      header {
+        margin-bottom: 0.5em;
+      }
+      header img {
+        width: 8.9em;
+        height: 5.6em;
+        display: block;
+        margin-bottom: 0.7em;
+      }
+      header .page-title {
+        margin: auto;
+        position: relative;
+        font-family: 'Playfair Display', serif;
+        color: #3E4345;
+        text-transform: uppercase;
+        font-size: 26px;
+        margin-bottom: -3px;
+        text-align: center;
+      }
+      .logo .logo-title {
+        color: #2B3A8B;
+        font-weight: bold;
+        font-size: 12px;
+      }
+      footer {
+        text-align: center;
+      }
+      footer .page-number {
+        color: #919699;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+      }
+      main .report-info {
+        margin: 2.1em 0;
+        justify-content: space-between;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        table-layout: fixed;
+      }
+      table, td {
+        border: 0.01em solid #C6CACC;
+      }
+      td {
+        border-bottom: none;
+      }
+      th, td {
+        padding: 0.85em;
+        font-style: normal;
+        font-weight: normal;
+      }
+      th {
+        text-align: left;
+        color: #919699;
+        font-weight: bold;
+      }
+      td {
+        vertical-align: baseline;
+        word-wrap: break-word;
+      }
+      th, tr:last-child td {
+        border: 0.01em solid #5E6366;
+        background: #F1F3F4;
+      }
+    </style>
 </head>
-<style>
-  html, body {
-    font-size: 10px;
-    font-family: 'IBM Plex Sans', sans-serif;
-    color: #3E4345;
-  }
-  .container {
-    display: block;
-	min-height: 90vh;
-    padding: 1.5em 3em;
-  }
-  header {
-    display: block;
-    margin-bottom: 0.5em;
-  }
-  header img {
-    width: 8.9em;
-    height: 5.6em;
-    display: block;
-    margin-bottom: 0.7em;
-  }
-  header .page-title {
-    margin: auto;
-    font-family: 'Playfair Display', serif;
-    color: #3E4345;
-    text-transform: uppercase;
-    font-size: 26px;
-    margin-bottom: -3px;
-    margin-top: -32px;
-    text-align: center;
-  }
-  .logo .logo-title {
-    color: #2B3A8B;
-    font-weight: bold;
-    font-size: 12px;
-  }
-  footer {
-    text-align: center;
-  }
-  footer .page-number {
-    color: #919699;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-  }
-  main {
-    width: 100%;
-    height: 100%;
-  }
-  main .report-info {
-    margin: 3.3em 0;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    table-layout: fixed;
-  }
-  table, td {
-    border: 0.01em solid #C6CACC;
-  }
-  td {
-  	border-bottom: none;
-  }
-  th, td {
-    padding: 0.85em;
-    font-style: normal;
-    font-weight: normal;
-  }
-  th {
-    text-align: left;
-    color: #919699;
-    font-weight: bold;
-  }
-  td {
-
-    vertical-align: baseline;
-    word-wrap: break-word;
-  }
-  th, tr:last-child td {
-    border: 0.01em solid #5E6366;
-    background: #F1F3F4;
-  }
-</style>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">
-        <img src="logo.png">
-        <span class="logo-title">PHU QUOC PARADISE RESORT & VILLAS</span>
-      </div>
-      <h1 class="page-title">ARRIVAL LIST</h1>
-    </header>
-    <main>
-<!--       <div class="report-info"> -->
-<!--         <p class="filter-date">Filter: 01/06/19 - 09/06/19</p> -->
-<!--         <p class="report-date">Report Date: 12:00 - 09/06/19</p> -->
-<!--       </div> -->
-      <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
-        <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;">Filter: 01/06/19 - 09/06/19</td>
-        <td class="report-date" style="background-color: white; text-align: right; padding: 0px; border: none;">Report Date: 12:00 - 09/06/19</td>
-      </tr></table>
-      
-      <table>
-        <tr>
-          <th style="text-align: right; width: 20px">No.</th>
-          <th style="width: 65px">Conf. No.</th>
-          <th style="width: 120px">Travel Agent / Company</th>
-          <th style="text-align: right; width: 30px">Room</th>
-          <th style="width: 35px">R.Type</th>
-          <th style="width: 30px">VIP</th>
-          <th style="width: 120px">Country</th>
-          <th style="width: 120px">Guest</th>
-          <th style="width: 45px">Arrival</th>
-          <th style="width: 45px">Departure</th>
-          <th style="text-align: right; width: 30px">Adult</th>
-          <th style="text-align: right; width: 30px">Child</th>
-          <th style="text-align: right; width: 30px">Infant</th>
-          <th style="width: 50px">Status</th>
-        </tr>
-        <tr>
-          <td rowspan="2" style="text-align: right">1</td>
-          <td rowspan="2">4906037046</td>
-          <td rowspan="2">Starbucks</td>
-          <td rowspan="2" style="text-align: right">7032</td>
-          <td rowspan="2">HKFJ</td>
-          <td>VIP1</td>
-          <td>Bahrain</td>
-          <td>Tomothy, Simmmons</td>
-          <td rowspan="2">05/06/19</td>
-          <td rowspan="2">08/06/19</td>
-          <td rowspan="2" style="text-align: right">2</td>
-          <td rowspan="2" style="text-align: right">2</td>
-          <td rowspan="2" style="text-align: right">1</td>
-          <td rowspan="2">Arrival</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Bahrain</td>
-          <td>Tomothy, Simmmons</td>
-        </tr>
-        <tr>
-          <td rowspan="2" style="text-align: right">2</td>
-          <td rowspan="2">4906037046</td>
-          <td rowspan="2">Starbucks</td>
-          <td rowspan="2" style="text-align: right">7032</td>
-          <td rowspan="2">HKFJ</td>
-          <td>VIP1</td>
-          <td>Bahrain</td>
-          <td>Tomothy, Simmmons</td>
-          <td rowspan="2">05/06/19</td>
-          <td rowspan="2">08/06/19</td>
-          <td rowspan="2" style="text-align: right">2</td>
-          <td rowspan="2" style="text-align: right"></td>
-          <td rowspan="2" style="text-align: right">1</td>
-          <td rowspan="2">Arrival</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Bahrain</td>
-          <td>Tomothy, Simmmons</td>
-        </tr>
-        <tr>
-          <td rowspan="2" style="text-align: right">3</td>
-          <td rowspan="2">4906037046</td>
-          <td rowspan="2">Starbucks</td>
-          <td rowspan="2" style="text-align: right">7032</td>
-          <td rowspan="2">HKFJ</td>
-          <td>VIP1</td>
-          <td>Bahrain</td>
-          <td>Tomothy, Simmmons</td>
-          <td rowspan="2">05/06/19</td>
-          <td rowspan="2">08/06/19</td>
-          <td rowspan="2" style="text-align: right">2</td>
-          <td rowspan="2" style="text-align: right"></td>
-          <td rowspan="2" style="text-align: right">1</td>
-          <td rowspan="2">Arrival</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Bahrain</td>
-          <td>Tomothy, Simmmons</td>
-        </tr>
-        <tr>
-          <td rowspan="4" style="text-align: right">4</td>
-          <td rowspan="4">4906037046</td>
-          <td rowspan="4">Starbucks</td>
-          <td rowspan="4" style="text-align: right">7032</td>
-          <td rowspan="4">HKFJ</td>
-          <td>VIP1</td>
-          <td>Bahrain</td>
-          <td>Tomothy, Simmmons</td>
-          <td rowspan="4">05/06/19</td>
-          <td rowspan="4">08/06/19</td>
-          <td rowspan="4" style="text-align: right">2</td>
-          <td rowspan="4" style="text-align: right"></td>
-          <td rowspan="4" style="text-align: right">1</td>
-          <td rowspan="4">Arrival</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Bahrain</td>
-          <td>Tomothy, Simmmons</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Bahrain</td>
-          <td>Tomothy, Simmmons</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Bahrain</td>
-          <td>Tomothy, Simmmons</td>
-        </tr>
-        <tr>
-          <td rowspan="2" style="text-align: right">5</td>
-          <td rowspan="2">4906037046</td>
-          <td rowspan="2">Starbucks</td>
-          <td rowspan="2" style="text-align: right">7032</td>
-          <td rowspan="2">HKFJ</td>
-          <td>VIP1</td>
-          <td>Bahrain</td>
-          <td>Tomothy, Simmmons</td>
-          <td rowspan="2">05/06/19</td>
-          <td rowspan="2">08/06/19</td>
-          <td rowspan="2" style="text-align: right">2</td>
-          <td rowspan="2" style="text-align: right"></td>
-          <td rowspan="2" style="text-align: right">1</td>
-          <td rowspan="2">Arrival</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Bahrain</td>
-          <td>Tomothy, Simmmons</td>
-        </tr>
-        <tr>
-          <td colspan="10" style="text-align: right; font-weight: bold;">TOTAL</td>
-          <td style="text-align: right; font-weight: bold;">10</td>
-          <td style="text-align: right; font-weight: bold;">3</td>
-          <td style="text-align: right; font-weight: bold;">2</td>
-          <td></td>
-        </tr>
-      </table>
-    </main>
-    <footer>
-      <p class="page-number">Page 1</p>
-    </footer>
-  </div>
+<div class="container">
+  <header>
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/kms-thoai-tran/report-template/development/vinpearl-logo-01.png"/>
+      <span class="logo-title">PHU QUOC PARADISE RESORT &amp; VILLAS</span>
+    </div>
+    <h1 class="page-title">ARRIVAL LIST</h1>
+  </header>
+  <main>
+    <!--       <div class="report-info"> -->
+    <!--         <p class="filter-date">Filter: 01/06/19 - 09/06/19</p> -->
+    <!--         <p class="report-date">Report Date: 12:00 - 09/06/19</p> -->
+    <!--       </div> -->
+    <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
+      <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;">Filter: 01/06/19 - 09/06/19</td>
+      <td class="report-date" style="background-color: white; text-align: right; padding: 0px; border: none;">Report Date: 12:00 - 09/06/19</td>
+    </tr></table>
+
+    <table>
+      <tr>
+        <th style="text-align: right; width: 20px">No.</th>
+        <th style="width: 65px">Conf. No.</th>
+        <th style="width: 120px">Travel Agent / Company</th>
+        <th style="text-align: right; width: 30px">Room</th>
+        <th style="width: 35px">R.Type</th>
+        <th style="width: 30px">VIP</th>
+        <th style="width: 120px">Country</th>
+        <th style="width: 120px">Guest</th>
+        <th style="width: 45px">Arrival</th>
+        <th style="width: 45px">Departure</th>
+        <th style="text-align: right; width: 30px">Adult</th>
+        <th style="text-align: right; width: 30px">Child</th>
+        <th style="text-align: right; width: 30px">Infant</th>
+        <th style="width: 50px">Status</th>
+      </tr>
+      <tr th:each="report_info: ${reportInfo}">
+        <td rowspan="2" style="text-align: right">1</td>
+        <td rowspan="2" th:text="${report_info?.confirmationNumber}">4906037046</td>
+        <td rowspan="2">Starbucks</td>
+        <td rowspan="2" style="text-align: right">7032</td>
+        <td rowspan="2">HKFJ</td>
+        <td>VIP1</td>
+        <td>Bahrain</td>
+        <td>Tomothy, Simmmons</td>
+        <td rowspan="2">05/06/19</td>
+        <td rowspan="2">08/06/19</td>
+        <td rowspan="2" style="text-align: right">2</td>
+        <td rowspan="2" style="text-align: right">2</td>
+        <td rowspan="2" style="text-align: right">1</td>
+        <td rowspan="2">Arrival</td>
+      </tr>
+    </table>
+  </main>
+  <footer>
+    <p class="page-number">Page 1</p>
+  </footer>
+</div>
 </body>
 </html>
