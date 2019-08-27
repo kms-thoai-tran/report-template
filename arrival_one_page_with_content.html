@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <style>
+    <meta charset="UTF-8"/>
+    <style>
       @page {
        margin: 20px;
        size: A4 landscape;
+        @bottom-center {
+          content: 'Page ' counter(page);
+        }
       }
       html, body {
         font-size: 10px;
@@ -61,7 +64,6 @@
       table {
         border-collapse: collapse;
         width: 100%;
-        table-layout: fixed;
       }
       table, td {
         border: 0.01em solid #C6CACC;
@@ -87,65 +89,69 @@
         border: 0.01em solid #5E6366;
         background: #F1F3F4;
       }
+      tr {
+        display: block;
+      }
     </style>
 </head>
 <body>
 <div class="container">
-  <header>
-    <div class="logo">
-      <img src="https://raw.githubusercontent.com/kms-thoai-tran/report-template/development/vinpearl-logo-01.png"/>
-      <span class="logo-title">PHU QUOC PARADISE RESORT &amp; VILLAS</span>
-    </div>
-    <h1 class="page-title">ARRIVAL LIST</h1>
-  </header>
-  <main>
-    <!--       <div class="report-info"> -->
-    <!--         <p class="filter-date">Filter: 01/06/19 - 09/06/19</p> -->
-    <!--         <p class="report-date">Report Date: 12:00 - 09/06/19</p> -->
-    <!--       </div> -->
-    <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
-      <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;">Filter: 01/06/19 - 09/06/19</td>
-      <td class="report-date" style="background-color: white; text-align: right; padding: 0px; border: none;">Report Date: 12:00 - 09/06/19</td>
-    </tr></table>
+    <header>
+        <div class="logo">
+            <img src="https://raw.githubusercontent.com/kms-thoai-tran/report-template/development/vinpearl-logo-01.png"/>
+            <span class="logo-title">PHU QUOC PARADISE RESORT &amp; VILLAS</span>
+        </div>
+        <h1 class="page-title">ARRIVAL LIST</h1>
+    </header>
+    <main>
+        <!--       <div class="report-info"> -->
+        <!--         <p class="filter-date">Filter: 01/06/19 - 09/06/19</p> -->
+        <!--         <p class="report-date">Report Date: 12:00 - 09/06/19</p> -->
+        <!--       </div> -->
+        <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
+            <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;">Filter: 01/06/19 - 09/06/19</td>
+            <td class="report-date" style="background-color: white; text-align: right; padding: 0px; border: none;">Report Date: 12:00 - 09/06/19</td>
+        </tr></table>
 
-    <table>
-      <tr>
-        <th style="text-align: right; width: 20px">No.</th>
-        <th style="width: 65px">Conf. No.</th>
-        <th style="width: 120px">Travel Agent / Company</th>
-        <th style="text-align: right; width: 30px">Room</th>
-        <th style="width: 35px">R.Type</th>
-        <th style="width: 30px">VIP</th>
-        <th style="width: 120px">Country</th>
-        <th style="width: 120px">Guest</th>
-        <th style="width: 45px">Arrival</th>
-        <th style="width: 45px">Departure</th>
-        <th style="text-align: right; width: 30px">Adult</th>
-        <th style="text-align: right; width: 30px">Child</th>
-        <th style="text-align: right; width: 30px">Infant</th>
-        <th style="width: 50px">Status</th>
-      </tr>
-      <tr th:each="report_info: ${reportInfo}">
-        <td rowspan="2" style="text-align: right">1</td>
-        <td rowspan="2" th:text="${report_info?.confirmationNumber}">4906037046</td>
-        <td rowspan="2">Starbucks</td>
-        <td rowspan="2" style="text-align: right">7032</td>
-        <td rowspan="2">HKFJ</td>
-        <td>VIP1</td>
-        <td>Bahrain</td>
-        <td>Tomothy, Simmmons</td>
-        <td rowspan="2">05/06/19</td>
-        <td rowspan="2">08/06/19</td>
-        <td rowspan="2" style="text-align: right">2</td>
-        <td rowspan="2" style="text-align: right">2</td>
-        <td rowspan="2" style="text-align: right">1</td>
-        <td rowspan="2">Arrival</td>
-      </tr>
-    </table>
-  </main>
-  <footer>
-    <p class="page-number">Page 1</p>
-  </footer>
+        <table>
+            <thead>
+            <tr>
+                <th style="text-align: right; width: 20px">No.</th>
+                <th style="width: 65px">Conf. No.</th>
+                <th style="width: 120px">Travel Agent / Company</th>
+                <th style="text-align: right; width: 30px">Room</th>
+                <th style="width: 35px">R.Type</th>
+                <th style="width: 30px">VIP</th>
+                <th style="width: 120px">Country</th>
+                <th style="width: 120px">Guest</th>
+                <th style="width: 45px">Arrival</th>
+                <th style="width: 45px">Departure</th>
+                <th style="text-align: right; width: 30px">Adult</th>
+                <th style="text-align: right; width: 30px">Child</th>
+                <th style="text-align: right; width: 30px">Infant</th>
+                <th style="width: 50px">Status</th>
+            </tr>
+            </thead>
+            <tbody th:remove="all-but-first">
+            <tr th:each="report_info: ${reportInfo}">
+                <td rowspan="2" style="text-align: right; width: 20px" th:text="${report_infoStat.count}">1</td>
+                <td rowspan="2" style="width: 65px" th:text="${report_info?.confirmationNumber}">4906037046</td>
+                <td rowspan="2" style="width: 120px">Starbucks</td>
+                <td rowspan="2" style="text-align: right; width: 30px">7032</td>
+                <td rowspan="2" style="width: 35px" th:text="${report_info?.roomType}">HKFJ</td>
+                <td style="width: 30px">VIP1</td>
+                <td style="width: 120px">Bahrain</td>
+                <td style="width: 120px">Tomothy, Simmmons</td>
+                <td rowspan="2" style="width: 45px">05/06/19</td>
+                <td rowspan="2" style="width: 45px">08/06/19</td>
+                <td rowspan="2" style="text-align: right; width: 30px">2</td>
+                <td rowspan="2" style="text-align: right; width: 30px">2</td>
+                <td rowspan="2" style="text-align: right; width: 30px">1</td>
+                <td rowspan="2" style="width: 50px" th:text="${report_info?.status}">Arrival</td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
 </div>
 </body>
 </html>
