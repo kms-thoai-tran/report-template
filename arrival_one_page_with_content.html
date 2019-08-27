@@ -3,16 +3,22 @@
 <head>
   <meta charset="UTF-8"/>
   <style>
+      @page {
+       margin: 20px;
+       size: A4 landscape;
+      }
       html, body {
         font-size: 10px;
         font-family: 'IBM Plex Sans', sans-serif;
         color: #3E4345;
       }
       .container {
+        display: block;
         min-height: 90vh;
         padding: 1.5em 3em;
       }
       header {
+        display: block;
         margin-bottom: 0.5em;
       }
       header img {
@@ -23,12 +29,12 @@
       }
       header .page-title {
         margin: auto;
-        position: relative;
         font-family: 'Playfair Display', serif;
         color: #3E4345;
         text-transform: uppercase;
         font-size: 26px;
         margin-bottom: -3px;
+        margin-top: -32px;
         text-align: center;
       }
       .logo .logo-title {
@@ -45,9 +51,12 @@
         font-weight: 500;
         font-size: 12px;
       }
+      main {
+        width: 100%;
+        height: 100%;
+      }
       main .report-info {
-        margin: 2.1em 0;
-        justify-content: space-between;
+        margin: 3.3em 0;
       }
       table {
         border-collapse: collapse;
@@ -117,7 +126,7 @@
         <th style="width: 50px">Status</th>
       </tr>
       <tr th:each="report_info: ${reportInfo}">
-        <td rowspan="2" style="text-align: right">1</td>
+        <td rowspan="2" style="text-align: right" th:text="${report_infoStat.count}">1</td>
         <td rowspan="2" th:text="${report_info?.confirmationNumber}">4906037046</td>
         <td rowspan="2">Starbucks</td>
         <td rowspan="2" style="text-align: right">7032</td>
