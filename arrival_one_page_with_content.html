@@ -97,12 +97,6 @@
             <img src="https://raw.githubusercontent.com/kms-thoai-tran/report-template/development/vinpearl-logo-01.png"/>
             <span class="logo-title">PHU QUOC PARADISE RESORT &amp; VILLAS</span>
         </div>
-        <div>
-            <h1 class="page-title">ARRIVAL LIST</h1>
-            <p class="report-date" style="background-color: white; text-align: right; padding: 0px; border: none;" th:text="'Report Date: ' +${#dates.hour(new java.util.Date(reportDate))} + ':' + ${#dates.minute(new java.util.Date(reportDate))}
-      + ' - ' + ${#dates.format(new java.util.Date(toDate), 'dd-MM-yyyy')}">
-                Report Date: 12:00 - 09/06/19</p>
-        </div>
     </header>
     <main>
         <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
