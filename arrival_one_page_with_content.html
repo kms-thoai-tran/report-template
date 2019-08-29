@@ -135,21 +135,21 @@
             <tr th:each="report_info: ${reportInfo}">
                 <td style="text-align: right;">1</td>
                 <td th:text="${report_info?.confirmationNumber}">4906037046</td>
-                <td th:text="${report_info.travelAgentProfile?.firstName}">Starbucks</td>
-                <td style="text-align: right;" th:text="${report_info?.roomName}">7032</td>
-                <td th:text="${report_info?.roomType}">HKFJ</td>
+                <td>Starbucks</td>
+                <td style="text-align: right;">7032</td>
+                <td>HKFJ</td>
                 <td>
                 </td>
                 <td>
                 </td>
                 <td>
                 </td>
-                <td th:text="${#dates.format(new java.util.Date(report_info.arrivalDate), 'dd-MM-yyyy')}">05/06/19</td>
-                <td th:text="${#dates.format(new java.util.Date(report_info.departureDate), 'dd-MM-yyyy')}">08/06/19</td>
+                <td>05/06/19</td>
+                <td>08/06/19</td>
                 <td style="text-align: right;">0</td>
                 <td style="text-align: right;">0</td>
                 <td style="text-align: right;">0</td>
-                <td th:text="${report_info?.status}">Arrival</td>
+                <td>Arrival</td>
             </tr>
             </tbody>
         </table>
