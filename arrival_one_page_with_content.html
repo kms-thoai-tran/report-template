@@ -131,9 +131,21 @@
                 <td th:text="${report_info.travelAgentProfile?.firstName}"></td>
                 <td style="text-align: right;" th:text="${report_info?.roomName}"></td>
                 <td th:text="${report_info?.roomType}"></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                    <div th:each="guest_profile: ${report_info.guestProfiles}">
+                        <div th:text="${guest_profile.get('vipCode')}">Bahrain</div>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="guest_profile: ${report_info.guestProfiles}">
+                        <div th:text="${guest_profile.get('country')}">Bahrain</div>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="guest_profile: ${report_info.guestProfiles}">
+                        <div th:text="${guest_profile.get('lastName')} != null ? ${guest_profile.get('lastName')} +',' + ${guest_profile.get('firstName')}">FirstName</div>
+                    </div>
+                </td>
                 <td></td>
                 <td></td>
                 <td style="text-align: right;">0</td>
