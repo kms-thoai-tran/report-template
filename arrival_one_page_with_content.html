@@ -130,14 +130,14 @@
                 <td th:text="${report_info?.confirmationNumber}"></td>
                 <td th:text="${report_info.travelAgentProfile?.firstName}"></td>
                 <td style="text-align: right;" th:text="${report_info?.roomName}"></td>
-                <td>HKFJ</td>
+                <td th:text="${report_info?.roomType}"></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td style="text-align: right;">0</td>
                 <td style="text-align: right;">0</td>
-                <td>Arrival</td>
+                <td th:text="${report_info?.status}">Arrival</td>
             </tr>
             </tbody>
         </table>
