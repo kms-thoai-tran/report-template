@@ -87,10 +87,6 @@
       }
       th, tr:last-child td {
         border: 0.01em solid #5E6366;
-        background: #F1F3F4;
-      }
-      tr {
-        display: block;
       }
     </style>
 </head>
@@ -101,55 +97,68 @@
             <img src="https://raw.githubusercontent.com/kms-thoai-tran/report-template/development/vinpearl-logo-01.png"/>
             <span class="logo-title">PHU QUOC PARADISE RESORT &amp; VILLAS</span>
         </div>
-        <h1 class="page-title">ARRIVAL LIST</h1>
+        <div>
+            <h1 class="page-title">ARRIVAL LIST</h1>
+            <p class="report-date" style="background-color: white; text-align: right; padding: 0px; border: none;" th:text="'Report Date: ' +${#dates.hour(new java.util.Date(reportDate))} + ':' + ${#dates.minute(new java.util.Date(reportDate))}
+      + ' - ' + ${#dates.format(new java.util.Date(toDate), 'dd-MM-yyyy')}">
+                Report Date: 12:00 - 09/06/19</p>
+        </div>
     </header>
     <main>
-        <!--       <div class="report-info"> -->
-        <!--         <p class="filter-date">Filter: 01/06/19 - 09/06/19</p> -->
-        <!--         <p class="report-date">Report Date: 12:00 - 09/06/19</p> -->
-        <!--       </div> -->
         <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
-            <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;">
+            <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;" th:text="'Filter: ' + ${#dates.format(new java.util.Date(fromDate), 'dd-MM-yyyy')}
+      + ' - ' + ${#dates.format(new java.util.Date(toDate), 'dd-MM-yyyy')}">
                 Filter: 01/06/19 - 09/06/19
             </td>
-            <td class="report-date" style="background-color: white; text-align: right; padding: 0px; border: none;">Report Date: 12:00 - 09/06/19</td>
         </tr></table>
 
         <table>
             <thead>
             <tr>
                 <th style="text-align: right; width: 20px">No.</th>
-                <th style="width: 65px">Conf. No.</th>
+                <th style="width: 70px">Conf. No.</th>
                 <th style="width: 120px">Travel Agent / Company</th>
                 <th style="text-align: right; width: 30px">Room</th>
                 <th style="width: 35px">R.Type</th>
                 <th style="width: 30px">VIP</th>
-                <th style="width: 120px">Country</th>
+                <th style="width: 90px">Country</th>
                 <th style="width: 120px">Guest</th>
-                <th style="width: 45px">Arrival</th>
-                <th style="width: 45px">Departure</th>
+                <th style="width: 60px">Arrival</th>
+                <th style="width: 60px">Departure</th>
                 <th style="text-align: right; width: 30px">Adult</th>
                 <th style="text-align: right; width: 30px">Child</th>
                 <th style="text-align: right; width: 30px">Infant</th>
-                <th style="width: 50px">Status</th>
+                <th style="width: 60px">Status</th>
             </tr>
             </thead>
             <tbody th:remove="all-but-first">
             <tr th:each="report_info: ${reportInfo}">
                 <td style="text-align: right;">1</td>
-                <td rowspan="2" style="width: 65px" th:text="${report_info?.confirmationNumber}">4906037046</td>
-                <td>Starbucks</td>
+                <td th:text="${report_info?.confirmationNumber}">4906037046</td>
+                <td th:text="${report_info.travelAgentProfile?.firstName}">Starbucks</td>
                 <td style="text-align: right;" th:text="${report_info?.roomName}">7032</td>
                 <td th:text="${report_info?.roomType}">HKFJ</td>
-                <td style="width: 30px">VIP1</td>
-                <td style="width: 120px">Bahrain</td>
-                <td style="width: 120px">Tomothy, Simmmons</td>
-                <td>05/06/19</td>
-                <td>08/06/19</td>
+                <td>
+                    <div th:each="guest_profile: ${report_info.guestProfiles}">
+                        <div th:text="${guest_profile.get('vipCode')}">Bahrain</div>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="guest_profile: ${report_info.guestProfiles}">
+                        <div th:text="${guest_profile.get('country')}">Bahrain</div>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="guest_profile: ${report_info.guestProfiles}">
+                        <div th:text="${guest_profile.get('lastName')} != null ? ${guest_profile.get('lastName')} +',' + ${guest_profile.get('firstName')}">FirstName</div>
+                    </div>
+                </td>
+                <td th:text="${#dates.format(new java.util.Date(report_info.arrivalDate), 'dd-MM-yyyy')}">05/06/19</td>
+                <td th:text="${#dates.format(new java.util.Date(report_info.departureDate), 'dd-MM-yyyy')}">08/06/19</td>
                 <td style="text-align: right;">2</td>
                 <td style="text-align: right;">2</td>
                 <td style="text-align: right;">1</td>
-                <td>Arrival</td>
+                <td th:text="${report_info?.status}">Arrival</td>
             </tr>
             </tbody>
         </table>
