@@ -132,17 +132,13 @@
                 <td style="text-align: right;" th:text="${report_info?.roomName}"></td>
                 <td th:text="${report_info?.roomType}"></td>
                 <td>HKFJ</td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td th:text="report_info.arrivalDate != null? ${#dates.format(new java.util.Date(report_info.arrivalDate), 'dd-MM-yyyy')}"></td>
-                <td th:text="report_info.departureDate != null ${#dates.format(new java.util.Date(report_info.departureDate), 'dd-MM-yyyy')}"></td>
+                <td></td>
+                <td></td>
+                <td th:text="${report_info.arrivalDate} != null ? ${#dates.format(new java.util.Date(report_info.arrivalDate), 'dd-MM-yyyy')}"></td>
+                <td th:text="${report_info.departureDate} != null ? ${#dates.format(new java.util.Date(report_info.departureDate), 'dd-MM-yyyy')}"></td>
                 <td style="text-align: right;">0</td>
                 <td style="text-align: right;">0</td>
-                <td style="text-align: right;">0</td>
+                <td th:text="${report_info?.status}">Arrival</td>
                 <td>Arrival</td>
             </tr>
             </tbody>
