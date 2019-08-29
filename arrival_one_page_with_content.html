@@ -133,19 +133,19 @@
             </thead>
             <tbody th:remove="all-but-first">
             <tr th:each="report_info: ${reportInfo}">
-                <td style="text-align: right;" th:text="${report_infoStat.count}">1</td>
+                <td style="text-align: right;">1</td>
                 <td th:text="${report_info?.confirmationNumber}">4906037046</td>
                 <td th:text="${report_info.travelAgentProfile?.firstName}">Starbucks</td>
                 <td style="text-align: right;" th:text="${report_info?.roomName}">7032</td>
                 <td th:text="${report_info?.roomType}">HKFJ</td>
                 <td>
                     <div th:each="guest_profile: ${report_info.guestProfiles}">
-                        <div th:text="${guest_profile.get('vipCode')}">Bahrain</div>
+                        <div th:text="${guest_profile.get('vipCode')}"></div>
                     </div>
                 </td>
                 <td>
                     <div th:each="guest_profile: ${report_info.guestProfiles}">
-                        <div th:text="${guest_profile.get('country')}">Bahrain</div>
+                        <div th:text="${guest_profile.get('country')}"></div>
                     </div>
                 </td>
                 <td>
@@ -155,9 +155,9 @@
                 </td>
                 <td th:text="${#dates.format(new java.util.Date(report_info.arrivalDate), 'dd-MM-yyyy')}">05/06/19</td>
                 <td th:text="${#dates.format(new java.util.Date(report_info.departureDate), 'dd-MM-yyyy')}">08/06/19</td>
-                <td style="text-align: right;">2</td>
-                <td style="text-align: right;">2</td>
-                <td style="text-align: right;">1</td>
+                <td style="text-align: right;">0</td>
+                <td style="text-align: right;">0</td>
+                <td style="text-align: right;">0</td>
                 <td th:text="${report_info?.status}">Arrival</td>
             </tr>
             </tbody>
