@@ -136,20 +136,20 @@
             </thead>
             <tbody th:remove="all-but-first">
             <tr th:each="report_info: ${reportInfo}">
-                <td rowspan="2" style="text-align: right; width: 20px">1</td>
+                <td style="text-align: right;" th:text="${report_infoStat.count}">1</td>
                 <td rowspan="2" style="width: 65px" th:text="${report_info?.confirmationNumber}">4906037046</td>
-                <td rowspan="2" style="width: 120px">Starbucks</td>
-                <td rowspan="2" style="text-align: right; width: 30px">7032</td>
-                <td rowspan="2" style="width: 35px">HKFJ</td>
+                <td th:text="${report_info.travelAgentProfile?.firstName}">Starbucks</td>
+                <td style="text-align: right;" th:text="${report_info?.roomName}">7032</td>
+                <td th:text="${report_info?.roomType}">HKFJ</td>
                 <td style="width: 30px">VIP1</td>
                 <td style="width: 120px">Bahrain</td>
                 <td style="width: 120px">Tomothy, Simmmons</td>
-                <td rowspan="2" style="width: 45px">05/06/19</td>
-                <td rowspan="2" style="width: 45px">08/06/19</td>
-                <td rowspan="2" style="text-align: right; width: 30px">2</td>
-                <td rowspan="2" style="text-align: right; width: 30px">2</td>
-                <td rowspan="2" style="text-align: right; width: 30px">1</td>
-                <td rowspan="2" style="width: 50px">Arrival</td>
+                <td th:text="${#dates.format(new java.util.Date(report_info.arrivalDate), 'dd-MM-yyyy')}">05/06/19</td>
+                <td th:text="${#dates.format(new java.util.Date(report_info.departureDate), 'dd-MM-yyyy')}">08/06/19</td>
+                <td style="text-align: right;">2</td>
+                <td style="text-align: right;">2</td>
+                <td style="text-align: right;">1</td>
+                <td th:text="${report_info?.status}">Arrival</td>
             </tr>
             </tbody>
         </table>
