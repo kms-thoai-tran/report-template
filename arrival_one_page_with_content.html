@@ -104,10 +104,6 @@
         <h1 class="page-title">ARRIVAL LIST</h1>
     </header>
     <main>
-        <!--       <div class="report-info"> -->
-        <!--         <p class="filter-date">Filter: 01/06/19 - 09/06/19</p> -->
-        <!--         <p class="report-date">Report Date: 12:00 - 09/06/19</p> -->
-        <!--       </div> -->
         <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
             <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;" th:text="'Filter: ' + ${#dates.format(new java.util.Date(fromDate), 'dd-MM-yyyy')}
       + ' - ' + ${#dates.format(new java.util.Date(toDate), 'dd-MM-yyyy')}">
