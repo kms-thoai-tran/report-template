@@ -127,9 +127,10 @@
             <tbody th:remove="all-but-first">
             <tr th:each="report_info: ${reportInfo}">
                 <td style="text-align: right;">1</td>
-                <td th:text="${report_info?.confirmationNumber}">4906037046</td>
+                <td th:text="${report_info?.confirmationNumber}"></td>
                 <td th:text="${report_info.travelAgentProfile?.firstName}"></td>
-                <td style="text-align: right;">7032</td>
+                <td style="text-align: right;" th:text="${report_info?.roomName}"></td>
+                <td th:text="${report_info?.roomType}"></td>
                 <td>HKFJ</td>
                 <td>
                 </td>
