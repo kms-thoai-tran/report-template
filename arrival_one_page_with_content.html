@@ -97,10 +97,17 @@
             <img src="https://raw.githubusercontent.com/kms-thoai-tran/report-template/development/vinpearl-logo-01.png"/>
             <span class="logo-title">PHU QUOC PARADISE RESORT &amp; VILLAS</span>
         </div>
+        <div>
+            <h1 class="page-title">ARRIVAL LIST</h1>
+            <p class="report-date" style="background-color: white; text-align: right; padding: 0px; border: none;" th:text="'Report Date: ' +${#dates.hour(new java.util.Date(reportDate))} + ':' + ${#dates.minute(new java.util.Date(reportDate))}
+      + ' - ' + ${#dates.format(new java.util.Date(toDate), 'dd-MM-yyyy')}">
+                Report Date: 12:00 - 09/06/19</p>
+        </div>
     </header>
     <main>
         <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
-            <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;">
+            <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;" th:text="'Filter: ' + ${#dates.format(new java.util.Date(fromDate), 'dd-MM-yyyy')}
+      + ' - ' + ${#dates.format(new java.util.Date(toDate), 'dd-MM-yyyy')}">
                 Filter: 01/06/19 - 09/06/19
             </td>
         </tr></table>
@@ -126,7 +133,7 @@
             </thead>
             <tbody th:remove="all-but-first">
             <tr th:each="report_info: ${reportInfo}">
-                <td style="text-align: right;">1</td>
+                <td style="text-align: right;" th:text="${report_infoStat.count}">1</td>
                 <td th:text="${report_info?.confirmationNumber}"></td>
                 <td th:text="${report_info.travelAgentProfile?.firstName}"></td>
                 <td style="text-align: right;" th:text="${report_info?.roomName}"></td>
@@ -135,6 +142,8 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td style="text-align: right;">0</td>
                 <td style="text-align: right;">0</td>
                 <td style="text-align: right;">0</td>
                 <td th:text="${report_info?.status}">Arrival</td>
