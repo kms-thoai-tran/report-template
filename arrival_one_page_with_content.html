@@ -109,8 +109,7 @@
         <!--         <p class="report-date">Report Date: 12:00 - 09/06/19</p> -->
         <!--       </div> -->
         <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
-            <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;" th:text="'Filter: ' + ${#dates.format(new java.util.Date(fromDate), 'dd-MM-yyyy')}
-      + ' - ' + ${#dates.format(new java.util.Date(toDate), 'dd-MM-yyyy')}">
+            <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;">
                 Filter: 01/06/19 - 09/06/19
             </td>
             <td class="report-date" style="background-color: white; text-align: right; padding: 0px; border: none;">Report Date: 12:00 - 09/06/19</td>
@@ -137,11 +136,11 @@
             </thead>
             <tbody th:remove="all-but-first">
             <tr th:each="report_info: ${reportInfo}">
-                <td rowspan="2" style="text-align: right; width: 20px" th:text="${report_infoStat.count}">1</td>
+                <td rowspan="2" style="text-align: right; width: 20px">1</td>
                 <td rowspan="2" style="width: 65px" th:text="${report_info?.confirmationNumber}">4906037046</td>
                 <td rowspan="2" style="width: 120px">Starbucks</td>
                 <td rowspan="2" style="text-align: right; width: 30px">7032</td>
-                <td rowspan="2" style="width: 35px" th:text="${report_info?.roomType}">HKFJ</td>
+                <td rowspan="2" style="width: 35px">HKFJ</td>
                 <td style="width: 30px">VIP1</td>
                 <td style="width: 120px">Bahrain</td>
                 <td style="width: 120px">Tomothy, Simmmons</td>
@@ -150,7 +149,7 @@
                 <td rowspan="2" style="text-align: right; width: 30px">2</td>
                 <td rowspan="2" style="text-align: right; width: 30px">2</td>
                 <td rowspan="2" style="text-align: right; width: 30px">1</td>
-                <td rowspan="2" style="width: 50px" th:text="${report_info?.status}">Arrival</td>
+                <td rowspan="2" style="width: 50px">Arrival</td>
             </tr>
             </tbody>
         </table>
