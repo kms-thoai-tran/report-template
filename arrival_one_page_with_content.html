@@ -99,14 +99,14 @@
         </div>
         <div>
             <h1 class="page-title">ARRIVAL LIST</h1>
-            <p class="report-date" style="background-color: white; text-align: right; padding: 0px; border: none;" th:text="'Report Date: ' + ${reportDate}">
+            <p class="report-date" style="background-color: white; text-align: right; padding: 0px; border: none;" th:text="'Report Date: ' + ${reportDateFormat}">
                 Report Date: 12:00 - 09/06/19</p>
         </div>
     </header>
     <main>
         <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
-            <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;" th:text="'Filter: ' + ${fromDate}
-      + ' - ' + ${toDate}">
+            <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;" th:text="'Filter: ' + ${fromDateFormat}
+      + ' - ' + ${toDateFormat}">
                 Filter: 01/06/19 - 09/06/19
             </td>
         </tr></table>
@@ -130,7 +130,7 @@
                 <th style="width: 60px">Status</th>
             </tr>
             </thead>
-            <tbody th:remove="all-but-first">
+            <tbody>
             <tr th:each="report_info: ${reportInfo}">
                 <td style="text-align: right;" th:text="${report_infoStat.count}">1</td>
                 <td th:text="${report_info?.confirmationNumber}"></td>
@@ -152,12 +152,19 @@
                         <div th:text="${guest_profile.get('lastName')} != null ? ${guest_profile.get('lastName')} +',' + ${guest_profile.get('firstName')}">FirstName</div>
                     </div>
                 </td>
-                <td th:text="${report_info.arrivalDate}"></td>
-                <td th:text="${report_info.departureDate}"></td>
-                <td style="text-align: right;">0</td>
-                <td style="text-align: right;">0</td>
-                <td style="text-align: right;">0</td>
+                <td th:text="${report_info.arrivalDateFormat}"></td>
+                <td th:text="${report_info.departureDateFormat}"></td>
+                <td style="text-align: right;" th:text="${report_info?.numberOfAdult}">0</td>
+                <td style="text-align: right;" th:text="${report_info?.numberOfChild}">0</td>
+                <td style="text-align: right;" th:text="${report_info?.numberOfInfant}">0</td>
                 <td th:text="${report_info?.status}">Arrival</td>
+            </tr>
+            <tr>
+                <td colspan="10" style="text-align: left; font-weight: bold;">TOTAL</td>
+                <td style="text-align: right; font-weight: bold;" th:text="${arrivalReportSummary?.totalAdult}">0</td>
+                <td style="text-align: right; font-weight: bold;" th:text="${arrivalReportSummary?.totalChild}">0</td>
+                <td style="text-align: right; font-weight: bold;" th:text="${arrivalReportSummary?.totalInfant}">0</td>
+                <td></td>
             </tr>
             </tbody>
         </table>
