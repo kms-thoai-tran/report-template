@@ -152,8 +152,8 @@
                         <div th:text="${guest_profile.get('lastName')} != null ? ${guest_profile.get('lastName')} +',' + ${guest_profile.get('firstName')}">FirstName</div>
                     </div>
                 </td>
-                <td></td>
-                <td></td>
+                <td th:text="${report_info.arrivalDateFormat}"></td>
+                <td th:text="${report_info.departureDateFormat}"></td>
                 <td style="text-align: right;" th:text="${report_info?.numberOfAdult}">0</td>
                 <td style="text-align: right;" th:text="${report_info?.numberOfChild}">0</td>
                 <td style="text-align: right;" th:text="${report_info?.numberOfInfant}">0</td>
@@ -161,9 +161,9 @@
             </tr>
             <tr>
                 <td colspan="10" style="text-align: left; font-weight: bold;">TOTAL</td>
-                <td style="text-align: right; font-weight: bold;">0</td>
-                <td style="text-align: right; font-weight: bold;">0</td>
-                <td style="text-align: right; font-weight: bold;">0</td>
+                <td style="text-align: right; font-weight: bold;" th:text="${arrivalReportSummary?.totalAdult}">0</td>
+                <td style="text-align: right; font-weight: bold;" th:text="${arrivalReportSummary?.totalChild}">0</td>
+                <td style="text-align: right; font-weight: bold;" th:text="${arrivalReportSummary?.totalInfant}">0</td>
                 <td></td>
             </tr>
             </tbody>
