@@ -171,6 +171,9 @@
                     <div th:each="guest_profile: ${report_info.guestProfiles}">
                         <div style="height:10px;" th:text="${guest_profile.get('lastName')} != null ? ${guest_profile.get('lastName')} +', ' + ${guest_profile.get('firstName')}">FirstName</div>
                     </div>
+                    <div th:if="${report_info?.numberOfAdult > report_info.guestProfiles.size()}">
+                        <div th:text="'Missing: ' + ${report_info?.numberOfAdult - report_info.guestProfiles.size()}"></div>
+                    </div>
                 </td>
                 <td th:text="${report_info.arrivalDateFormat}"></td>
                 <td th:text="${report_info.departureDateFormat}"></td>
