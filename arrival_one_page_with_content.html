@@ -160,17 +160,17 @@
                 <td th:text="${report_info?.roomType}"></td>
                 <td>
                     <div th:each="guest_profile: ${report_info.guestProfiles}">
-                        <div style="height:20px;" th:text="${guest_profile.get('vipCode')}">Bahrain</div>
+                        <div style="height:15px;" th:text="${guest_profile.get('vipCode')}">Bahrain</div>
                     </div>
                 </td>
                 <td>
                     <div th:each="guest_profile: ${report_info.guestProfiles}">
-                        <div style="height:20px;" th:text="${guest_profile.get('country')}">Bahrain</div>
+                        <div style="height:15px;" th:text="${guest_profile.get('country')}">Bahrain</div>
                     </div>
                 </td>
                 <td>
                     <div th:each="guest_profile: ${report_info.guestProfiles}">
-                        <div style="height:20px;" th:text="${guest_profile.get('lastName')} != null ? ${guest_profile.get('lastName')} +', ' + ${guest_profile.get('firstName')}">FirstName</div>
+                        <div style="height:15px;" th:text="${guest_profile.get('lastName')} != null ? ${guest_profile.get('lastName')} +', ' + ${guest_profile.get('firstName')}">FirstName</div>
                     </div>
                 </td>
                 <td th:text="${report_info.arrivalDateFormat}"></td>
