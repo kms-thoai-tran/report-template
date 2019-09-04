@@ -27,9 +27,9 @@
        margin: 20px;
        size: A4 landscape;
        font-family: 'IBM Plex Sans', sans-serif;
-        @bottom-center {
-          content: 'Page ' counter(page);
-        }
+      }
+      #pageNumber:before {
+       content: counter(page);
       }
       html, body {
         font-size: 10px;
@@ -180,7 +180,7 @@
                 <td th:text="${report_info?.status}">Arrival</td>
             </tr>
             <tr>
-                <td colspan="10" style="text-align: left; font-weight: bold;">TOTAL</td>
+                <td colspan="10" style="text-align: right; font-weight: bold;">TOTAL</td>
                 <td style="text-align: right; font-weight: bold;" th:text="${arrivalReportSummary?.totalAdult}">0</td>
                 <td style="text-align: right; font-weight: bold;" th:text="${arrivalReportSummary?.totalChild}">0</td>
                 <td style="text-align: right; font-weight: bold;" th:text="${arrivalReportSummary?.totalInfant}">0</td>
@@ -190,5 +190,6 @@
         </table>
     </main>
 </div>
+<footer><p class="page-number" >Page <span id="pageNumber"></span></p></footer>
 </body>
 </html>
