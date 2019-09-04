@@ -25,11 +25,14 @@
       }
       @page {
        margin: 20px;
+       margin-bottom: 50px;
        size: A4 landscape;
        font-family: 'IBM Plex Sans', sans-serif;
-      }
-      #pageNumber:before {
-       content: counter(page);
+       @bottom-center {
+          font-family: 'IBM Plex Sans', sans-serif;
+          content: 'Page ' counter(page);
+          font-size: 12px;
+        }
       }
       html, body {
         font-size: 10px;
@@ -154,7 +157,7 @@
             <tr th:each="report_info: ${reportInfo}">
                 <td style="text-align: right;" th:text="${report_infoStat.count}">1</td>
                 <td th:text="${report_info?.confirmationNumber}"></td>
-                <td th:text="${report_info.travelAgentProfile?.firstName}"></td>
+                <td th:text="${report_info.travelAgentProfileName != '' ? report_info.travelAgentProfileName : report_info.companyProfileName}"></td>
                 <td style="text-align: right;" th:text="${report_info?.roomName}"></td>
                 <td th:text="${report_info?.roomType}"></td>
                 <td>
@@ -193,6 +196,5 @@
         </table>
     </main>
 </div>
-<footer><p class="page-number" >Page <span id="pageNumber"></span></p></footer>
 </body>
 </html>
