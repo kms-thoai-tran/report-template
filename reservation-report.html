@@ -90,7 +90,7 @@
         width: 100%;
       }
       table, td {
-        border: 0.01em solid #C6CACC;
+        border: 0.01em solid #000000;
       }
       th, td {
         padding: 0.85em;
@@ -106,7 +106,7 @@
         word-wrap: break-word;
       }
       th, tr:last-child td {
-        border: 0.01em solid #C6CACC;
+        border: 0.01em solid #000000;
       }
     </style>
 </head>
@@ -138,15 +138,15 @@
             <thead>
             <tr>
                 <th style="text-align: right; width: 20px">No.</th>
-                <th style="width: 70px">Conf. No.</th>
-                <th style="width: 120px">Travel Agent / Company</th>
+                <th style="width: 80px">Conf. No.</th>
+                <th style="width: 110px">Travel Agent / Company</th>
                 <th style="text-align: right; width: 30px">Room</th>
                 <th style="width: 35px">R.Type</th>
                 <th style="width: 30px">VIP</th>
                 <th style="width: 90px">Country</th>
-                <th style="width: 120px">Guest</th>
-                <th style="width: 60px">Arrival</th>
-                <th style="width: 60px">Departure</th>
+                <th style="width: 150px">Guest</th>
+                <th style="width: 45px">Arrival</th>
+                <th style="width: 45px">Departure</th>
                 <th style="text-align: right; width: 30px">Adult</th>
                 <th style="text-align: right; width: 30px">Child</th>
                 <th style="text-align: right; width: 30px">Infant</th>
@@ -162,24 +162,24 @@
                 <td th:text="${report_info?.roomType}"></td>
                 <td>
                     <div th:each="guest_profile: ${report_info.guestProfiles}">
-                        <div style="padding-bottom: 10px;" th:text="${guest_profile.get('vipCode')}">Bahrain</div>
+                        <div th:text="${guest_profile.get('vipCode')}">Bahrain</div>
                     </div>
                 </td>
                 <td>
                     <div th:each="guest_profile: ${report_info.guestProfiles}">
-                        <div style="padding-bottom: 10px;" th:text="${guest_profile.get('country')}">Bahrain</div>
+                        <div th:text="${guest_profile.get('country')}">Bahrain</div>
                     </div>
                 </td>
                 <td>
                     <div th:each="guest_profile: ${report_info.guestProfiles}">
-                        <div style="padding-bottom: 10px;" th:text="${guest_profile.get('lastName')} != null ? ${guest_profile.get('lastName')} +', ' + ${guest_profile.get('firstName')}">FirstName</div>
+                        <div th:text="${guest_profile.get('lastName')} != null ? ${guest_profile.get('lastName')} +', ' + ${guest_profile.get('firstName')}">FirstName</div>
                     </div>
                     <div th:if="${report_info?.numberOfAdult > report_info.guestProfiles.size()}">
                         <div th:text="'Missing: ' + ${report_info?.numberOfAdult - report_info.guestProfiles.size()}"></div>
                     </div>
                 </td>
-                <td th:text="${report_info.arrivalDateFormat}"></td>
-                <td th:text="${report_info.departureDateFormat}"></td>
+                <td th:text="${report_info.arrivalDateFormat}">04-09-2019</td>
+                <td th:text="${report_info.departureDateFormat}">05-09-2019</td>
                 <td style="text-align: right;" th:text="${report_info?.numberOfAdult}">0</td>
                 <td style="text-align: right;" th:text="${report_info?.numberOfChild}">0</td>
                 <td style="text-align: right;" th:text="${report_info?.numberOfInfant}">0</td>
