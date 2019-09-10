@@ -125,7 +125,7 @@
     </header>
     <main>
         <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
-            <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none;" th:text="'Filter: ' + ${fromDateFormat}
+            <td class="filter-date" th:if="${reportName != 'In-House Guest List'}" style="background-color: white; text-align: left; padding: 0px; border: none;" th:text="'Filter: ' + ${fromDateFormat}
       + ' - ' + ${toDateFormat}">
                 Filter: 01/06/19 - 09/06/19
             </td>
