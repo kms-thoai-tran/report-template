@@ -139,27 +139,27 @@
             <tbody>
             <tr>
                 <td class="name">Message For:</td>
-                <td th:text="${report.messageTo}" class="value">To</td>
+                <td th:text="${report_info[0].messageTo}" class="value">To</td>
                 <td class="name">Message From:</td>
-                <td th:text="${report.messageFrom}" class="value">From</td>
+                <td th:text="${report_info[0].messageFrom}" class="value">From</td>
             </tr>
             <tr>
                 <td class="name">Room:</td>
-                <td th:text="${report.roomNumber}" class="value">Room</td>
+                <td th:text="${report_info[0].roomNumber}" class="value">Room</td>
                 <td class="name">Company:</td>
-                <td th:text="${report.company}" class="value">Company</td>
+                <td th:text="${report_info[0].company}" class="value">Company</td>
             </tr>
             <tr>
                 <td class="name">Created At:</td>
-                <td th:text="${report.createdAt}" class="value">Created At</td>
+                <td th:text="${report_info[0].createdAt}" class="value">Created At</td>
                 <td class="name">Phone Number:</td>
-                <td th:text="${report.phone}" class="value">Phone</td>
+                <td th:text="${report_info[0].phone}" class="value">Phone</td>
             </tr>
             <tr>
                 <td colspan="4" class="message-body">
-                    <p th:text="Dear ${report.messageTo},">Dear Guest,</p>
+                    <p th:text="Dear ${report_info[0].messageTo},">Dear Guest,</p>
                     <br/>
-                    <p th:text="${report.message}">Messages</p>
+                    <p th:text="${report_info[0].message}">Messages</p>
                     <br/>
                     <p>Regards,</p>
                     <p>Frond Desk</p>
