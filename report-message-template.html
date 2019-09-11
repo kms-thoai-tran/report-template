@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+
+        @page {
+            margin: 20px;
+            size: A4 portrait;
+            @bottom-center {
+                content: 'Page ' counter(page);
+            }
+        }
+
+        html, body {
+            font-size: 10px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: #3E4345;
+        }
+
+        .container {
+            display: block;
+            min-height: 90vh;
+            padding: 1.5em 3em;
+        }
+
+        header {
+            display: block;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        header img {
+            width: 8.9em;
+            height: 5.6em;
+            display: block;
+            margin: auto;
+        }
+
+        header .page-title {
+            margin: auto;
+            font-family: 'Playfair Display', serif;
+            color: #3E4345;
+            text-transform: uppercase;
+            font-size: 26px;
+            text-align: center;
+        }
+
+        .logo .logo-title {
+            color: #2B3A8B;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+        }
+
+        footer .page-number {
+            color: #919699;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 12px;
+        }
+
+        main {
+            width: 100%;
+            height: 100%;
+        }
+
+        main .report-info {
+            margin: 3.3em 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 500px;
+            margin: auto;
+        }
+
+        table tr{
+            border: 0.01em solid #9da5a8;
+        }
+
+        td {
+            border-bottom: none;
+        }
+
+        th, td {
+            padding: 1.5em;
+            font-style: normal;
+            font-weight: normal;
+        }
+
+        th {
+            text-align: left;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        td {
+            vertical-align: baseline;
+            word-wrap: break-word;
+        }
+
+        th, tr:last-child td {
+            border: 0.01em solid #9da5a8;
+        }
+
+        .value {
+            font-weight: bold;
+        }
+        .name {
+            width: 80px;
+        }
+        .message-body {
+            font-style: oblique;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="logo">
+            <img src="https://raw.githubusercontent.com/kms-haohuynh/hms-report-template/master/vinpearl-logo-01.png"/>
+            <p class="logo-title">PHU QUOC PARADISE RESORT &amp; VILLAS</p>
+        </div>
+        <div>
+            <h1 class="page-title">GUEST MESSAGE</h1>
+        </div>
+    </header>
+    <main>
+
+        <table>
+            <tbody>
+            <tr>
+                <td class="name">Message For:</td>
+                <td th:text="${report.messageTo}" class="value">To</td>
+                <td class="name">Message From:</td>
+                <td th:text="${report.messageFrom}" class="value">From</td>
+            </tr>
+            <tr>
+                <td class="name">Room:</td>
+                <td th:text="${report.roomNumber}" class="value">Room</td>
+                <td class="name">Company:</td>
+                <td th:text="${report.company}" class="value">Company</td>
+            </tr>
+            <tr>
+                <td class="name">Created At:</td>
+                <td th:text="${report.createdAt}" class="value">Created At</td>
+                <td class="name">Phone Number:</td>
+                <td th:text="${report.phone}" class="value">Phone</td>
+            </tr>
+            <tr>
+                <td colspan="4" class="message-body">
+                    <p th:text="Dear ${report.messageTo},">Dear Guest,</p>
+                    <br/>
+                    <p th:text="${report.message}">Messages</p>
+                    <br/>
+                    <p>Regards,</p>
+                    <p>Frond Desk</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+</body>
+</html>
