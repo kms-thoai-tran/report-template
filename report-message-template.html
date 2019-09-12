@@ -7,13 +7,14 @@
         @page {
             margin: 20px;
             size: A4 portrait;
+            -fs-page-orientation: portrait;
             @bottom-center {
                 content: 'Page ' counter(page);
             }
         }
 
         html, body {
-            font-size: 10px;
+            font-size: 12px;
             font-family: 'IBM Plex Sans', sans-serif;
             color: #3E4345;
         }
@@ -56,38 +57,16 @@
             margin-bottom: 20px;
         }
 
-        footer {
-            text-align: center;
-        }
-
-        footer .page-number {
-            color: #919699;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 12px;
-        }
-
         main {
             width: 100%;
             height: 100%;
         }
 
-        main .report-info {
-            margin: 3.3em 0;
-        }
-
         table {
-            border-collapse: collapse;
-            width: 500px;
+            border: 1px solid gray;
+            width: 600px;
             margin: auto;
-        }
-
-        table tr{
-            border: 0.01em solid #9da5a8;
-        }
-
-        td {
-            border-bottom: none;
+            border-collapse: separate;
         }
 
         th, td {
@@ -105,20 +84,20 @@
         td {
             vertical-align: baseline;
             word-wrap: break-word;
-        }
-
-        th, tr:last-child td {
-            border: 0.01em solid #9da5a8;
+            border: none;
         }
 
         .value {
             font-weight: bold;
+            width: 80px;
         }
         .name {
             width: 80px;
         }
         .message-body {
             font-style: oblique;
+            border-top: 1px solid gray;
+            padding-top: 0px;
         }
     </style>
 </head>
@@ -135,32 +114,32 @@
     </header>
     <main>
 
-        <table>
+        <table cellspacing="0" border="1" cellpadding="0">
             <tbody>
             <tr>
                 <td class="name">Message For:</td>
-                <td th:text="${report_info[0].messageTo}" class="value">To</td>
+                <td th:text="${reportInfo[0].isMessageForGroup ? reportInfo[0].itineraryNumber : reportInfo[0].messageTo}" class="value">To</td>
                 <td class="name">Message From:</td>
-                <td th:text="${report_info[0].messageFrom}" class="value">From</td>
+                <td th:text="${reportInfo[0].messageFrom}" class="value">From</td>
             </tr>
             <tr>
-                <td class="name">Room:</td>
-                <td th:text="${report_info[0].roomNumber}" class="value">Room</td>
+                <td class="name" th:text="${reportInfo[0].isMessageForGroup ? '' : 'Room:'}">Room:</td>
+                <td th:text="${reportInfo[0].isMessageForGroup ? '' : reportInfo[0].roomNumber}" class="value">Room</td>
                 <td class="name">Company:</td>
-                <td th:text="${report_info[0].company}" class="value">Company</td>
+                <td th:text="${reportInfo[0].company}" class="value">Company</td>
             </tr>
             <tr>
                 <td class="name">Created At:</td>
-                <td th:text="${report_info[0].createdAt}" class="value">Created At</td>
+                <td th:text="${reportInfo[0].createdAt}" class="value">06:09 10/09/2019</td>
                 <td class="name">Phone Number:</td>
-                <td th:text="${report_info[0].phone}" class="value">Phone</td>
+                <td th:text="${reportInfo[0].phone}" class="value">01234</td>
             </tr>
             <tr>
                 <td colspan="4" class="message-body">
-                    <p th:text="Dear ${report_info[0].messageTo},">Dear Guest,</p>
-                    <br/>
-                    <p th:text="${report_info[0].message}">Messages</p>
-                    <br/>
+                    <p th:text="'Dear ' + ${reportInfo[0].isMessageForGroup ?  reportInfo[0].itineraryNumber : reportInfo[0].messageTo} + ' ,' ">Dear Guest,</p>
+                    <p></p>
+                    <p th:text="${reportInfo[0].message}">Messages</p>
+                    <p/>
                     <p>Regards,</p>
                     <p>Frond Desk</p>
                 </td>
