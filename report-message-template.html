@@ -97,7 +97,7 @@
             width: 80px;
         }
         .name {
-            width: 80px;
+            width: 50px;
             padding-right: 0px;
         }
         .message-body {
@@ -135,9 +135,9 @@
                 <td th:text="${reportInfo[0].company}" class="value">Company</td>
             </tr>
             <tr>
-                <td>Created At:</td>
+                <td class="name">Created At:</td>
                 <td th:text="${reportInfo[0].createdAt}" class="value">06:09 10/09/2019</td>
-                <td style="width: 80px">Phone Number:</td>
+                <td class="name">Phone Number:</td>
                 <td th:text="${reportInfo[0].phone}" class="value">01234</td>
             </tr>
             <tr>
