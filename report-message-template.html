@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8"/>
     <style>
-
+     @font-face {
+        font-family: 'IBM Plex Sans';
+        font-weight: normal;
+        font-style: normal;
+        src: url(https://raw.githubusercontent.com/IBM/plex/master/IBM-Plex-Sans/fonts/complete/ttf/IBMPlexSans-Light.ttf);
+      }
         @page {
             margin: 20px;
             size: A4 portrait;
@@ -64,7 +69,7 @@
 
         table {
             border: 1px solid gray;
-            width: 600px;
+            width: 650px;
             margin: auto;
             border-collapse: separate;
         }
@@ -92,7 +97,8 @@
             width: 80px;
         }
         .name {
-            width: 80px;
+            width: 10px;
+            padding-right: 0px;
         }
         .message-body {
             font-style: oblique;
@@ -117,7 +123,7 @@
         <table cellspacing="0" border="1" cellpadding="0">
             <tbody>
             <tr>
-                <td class="name">Message For:</td>
+                <td>Message For:</td>
                 <td th:text="${reportInfo[0].messageTo}" class="value">To</td>
                 <td class="name">Message From:</td>
                 <td th:text="${reportInfo[0].messageFrom}" class="value">From</td>
@@ -129,17 +135,14 @@
                 <td th:text="${reportInfo[0].company}" class="value">Company</td>
             </tr>
             <tr>
-                <td class="name">Created At:</td>
+                <td>Created At:</td>
                 <td th:text="${reportInfo[0].createdAt}" class="value">06:09 10/09/2019</td>
-                <td class="name">Phone Number:</td>
+                <td style="width: 80px">Phone Number:</td>
                 <td th:text="${reportInfo[0].phone}" class="value">01234</td>
             </tr>
             <tr>
                 <td colspan="4" class="message-body">
-                    <p th:text="'Dear ' + ${reportInfo[0].isMessageForGroup ?  reportInfo[0].itineraryNumber : reportInfo[0].messageTo} + ' ,' ">Dear Guest,</p>
-                    <p></p>
                     <p th:text="${reportInfo[0].message}">Messages</p>
-                    <p/>
                     <p>Regards,</p>
                     <p>Frond Desk</p>
                 </td>
