@@ -1,155 +1,117 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <style>
-     @font-face {
+      @font-face {
         font-family: 'IBM Plex Sans';
         font-weight: normal;
         font-style: normal;
         src: url(https://raw.githubusercontent.com/IBM/plex/master/IBM-Plex-Sans/fonts/complete/ttf/IBMPlexSans-Light.ttf);
       }
         @page {
-            margin: 20px;
+            margin:0px;
             size: A4 portrait;
             -fs-page-orientation: portrait;
             @bottom-center {
                 content: 'Page ' counter(page);
             }
         }
-
+        .column1 {
+          float: left;
+          width: 30%;
+          height: 100%;
+          display:inline;
+        }
+         .column2 {
+          float: left;
+          width: 70%;
+          padding-top: 120px;
+          display:inline;
+        }
         html, body {
             font-size: 12px;
             font-family: 'IBM Plex Sans', sans-serif;
             color: #3E4345;
-        }
-
-        .container {
-            display: block;
-            min-height: 90vh;
-            padding: 1.5em 3em;
-        }
-
-        header {
-            display: block;
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        header img {
-            width: 8.9em;
-            height: 5.6em;
-            display: block;
-            margin: auto;
-        }
-
-        header .page-title {
-            margin: auto;
-            font-family: 'Playfair Display', serif;
-            color: #3E4345;
-            text-transform: uppercase;
-            font-size: 26px;
-            text-align: center;
-        }
-
-        .logo .logo-title {
-            color: #2B3A8B;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        .logo {
-            margin-bottom: 20px;
-        }
-
-        main {
-            width: 100%;
+            padding:0px;
             height: 100%;
+            margin: 0;
         }
-
-        table {
-            border: 1px solid gray;
-            width: 650px;
-            margin: auto;
-            border-collapse: separate;
+        .titleLeft {
+           font-size: 14px;
+           height: 18px;
+           margin:0px;
+           padding-left: 15px;
         }
-
-        th, td {
-            padding: 1.5em;
-            font-style: normal;
-            font-weight: normal;
+        .valueLeft {
+           font-size: 16px;
+           height: 20px;
+           font-weight: 600px;
+           color: #000000;
+           margin:0px;
+           padding-left: 15px;
         }
-
-        th {
-            text-align: left;
-            color: #000000;
-            font-weight: bold;
-        }
-
-        td {
-            vertical-align: baseline;
-            word-wrap: break-word;
-            border: none;
-        }
-
-        .value {
-            font-weight: bold;
-            width: 80px;
-        }
-        .name {
-            width: 50px;
-            padding-right: 0px;
-        }
-        .message-body {
-            font-style: oblique;
-            border-top: 0.1px solid #c5c5c5;
-            padding-top: 0px;
+        .spacing-between-div {
+            padding-bottom: 20px;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <header>
-        <div class="logo">
-            <img src="https://raw.githubusercontent.com/kms-haohuynh/hms-report-template/master/vinpearl-logo-01.png"/>
-            <p class="logo-title">PHU QUOC PARADISE RESORT &amp; VILLAS</p>
+<div style="display:inline;">
+    <div class="column1" style="background-color:#edf0f3;">
+        <div style="text-align: center; height: 60px; padding-top: 36px">
+            <img src="https://raw.githubusercontent.com/kms-haohuynh/hms-report-template/master/vinpearl-logo-01.png" width="80px" height="50px" />
+        </div>
+        <div style="height: 40px; padding-bottom: 30px; text-align: center;">
+            <p class="logo-title">PHU QUOC PARADISE RESORT &amp; VILLAS </p>
+        </div>
+        <div class="spacing-between-div">
+            <p class="titleLeft">Message For:</p>
+            <p class="valueLeft" th:text="${reportInfo[0].messageTo}" >Message For:</p>
+        </div>
+        <div class="spacing-between-div">
+            <p class="titleLeft">Message From:</p>
+            <p class="valueLeft" th:text="${reportInfo[0].messageFrom}">Message From</p>
+        </div>
+        <div class="spacing-between-div" th:if="${!reportInfo[0].isMessageForGroup}">
+            <p class="titleLeft">Room:</p>
+            <p class="valueLeft" th:text="${reportInfo[0].roomNumber}"></p>
+        </div>
+        <div class="spacing-between-div">
+            <p class="titleLeft">Company:</p>
+            <p class="valueLeft" th:text="${reportInfo[0].company}">Company</p>
+        </div>
+        <div class="spacing-between-div">
+            <p class="titleLeft">Phone Number:</p>
+            <p class="valueLeft" th:text="${reportInfo[0].phone}">Phone</p>
+        </div>
+        <div class="spacing-between-div">
+            <p class="titleLeft">Created At:</p>
+            <p class="valueLeft" th:text="${reportInfo[0].createdAt}"></p>
+        </div>
+    </div>
+    <div class="column2">
+        <div style="text-align: center; font-size: 24px; font-weight: bold;">
+            <p>GUEST MESSAGE</p>
+        </div>
+        <div style="font-size: 16px; padding-left: 15px;">
+            <div th:utext="${reportInfo[0].message}">Dear Trang,I write this email in order to let you know
+                that I am very sorry for canceling our appointment
+                yesterday without informing you sooner. I know this is
+                my entire fault, but I hope you give me one chance to
+                explain the reason. I was on my way when all of a
+                sudden it started to rain. I did not have my raincoat
+                with me, so I was as wet as a towel that you put in
+                water. I am truly sorry Please reply me as soon as you
+                feel better Love, Nha.</div>
         </div>
         <div>
-            <h1 class="page-title">GUEST MESSAGE</h1>
+            <p style="font-size: 16px; padding-left: 15px;">Regards,</p>
         </div>
-    </header>
-    <main>
-
-        <table cellspacing="0" border="1" cellpadding="0">
-            <tbody>
-            <tr>
-                <td class="name">Message For:</td>
-                <td th:text="${reportInfo[0].messageTo}" class="value">To</td>
-                <td class="name">Message From:</td>
-                <td th:text="${reportInfo[0].messageFrom}" class="value">From</td>
-            </tr>
-            <tr>
-                <td class="name" th:text="${reportInfo[0].isMessageForGroup ? '' : 'Room:'}">Room:</td>
-                <td th:text="${reportInfo[0].isMessageForGroup ? '' : reportInfo[0].roomNumber}" class="value">Room</td>
-                <td class="name">Company:</td>
-                <td th:text="${reportInfo[0].company}" class="value">Company</td>
-            </tr>
-            <tr>
-                <td class="name">Created At:</td>
-                <td th:text="${reportInfo[0].createdAt}" class="value">06:09 10/09/2019</td>
-                <td class="name">Phone Number:</td>
-                <td th:text="${reportInfo[0].phone}" class="value">01234</td>
-            </tr>
-            <tr>
-                <td colspan="4" class="message-body">
-                    <p th:text="${reportInfo[0].message}">Messages</p>
-                    <p>Regards,</p>
-                    <p>Frond Desk</p>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </main>
+        <div>
+            <p style="font-size: 16px; padding-left: 15px;">Front Desk</p>
+        </div>
+    </div>
 </div>
 </body>
 </html>
