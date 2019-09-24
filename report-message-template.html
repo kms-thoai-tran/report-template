@@ -3,58 +3,85 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <style>
-      @font-face {
-        font-family: 'IBM Plex Sans';
-        font-weight: normal;
-        font-style: normal;
-        src: url(https://raw.githubusercontent.com/IBM/plex/master/IBM-Plex-Sans/fonts/complete/ttf/IBMPlexSans-Light.ttf);
-      }
+        @font-face {
+            font-family: 'IBM Plex Sans';
+            font-weight: normal;
+            font-style: normal;
+            src: url(https://raw.githubusercontent.com/IBM/plex/master/IBM-Plex-Sans/fonts/complete/ttf/IBMPlexSans-Light.ttf);
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            font-weight: normal;
+            font-style: normal;
+            src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu72xKOzY.woff2) format('woff2');
+        }
+
         @page {
-            margin:0px;
+            margin: 0;
             size: A4 portrait;
             -fs-page-orientation: portrait;
             @bottom-center {
                 content: 'Page ' counter(page);
             }
         }
+
         .column1 {
-          float: left;
-          width: 30%;
-          height: 100%;
-          display:inline;
+            float: left;
+            width: 30%;
+            height: 100%;
+            display: inline;
         }
-         .column2 {
-          float: left;
-          width: 70%;
-          padding-top: 120px;
-          display:inline;
+
+        .column2 {
+            float: left;
+            width: 70%;
+            padding-top: 140px;
+            display: inline;
         }
+
         html, body {
             font-size: 12px;
             font-family: 'IBM Plex Sans', sans-serif;
             color: #3E4345;
-            padding:0px;
+            padding: 0;
             height: 100%;
             margin: 0;
         }
+
         .titleLeft {
-           font-size: 14px;
-           height: 18px;
-           margin:0px;
-           padding-left: 25px;
-           padding-right: 25px;
+            font-size: 14px;
+            height: 18px;
+            margin: 0;
+            padding-left: 25px;
+            padding-right: 25px;
         }
+
         .valueLeft {
-           font-size: 16px;
-           height: 20px;
-           font-weight: 600px;
-           color: #000000;
-           margin:0px;
-           padding-left: 25px;
-           padding-right: 25px;
+            font-size: 16px;
+            height: 20px;
+            font-weight: 600;
+            color: #000000;
+            margin: 0;
+            padding-left: 25px;
+            padding-right: 25px;
         }
+
         .spacing-between-div {
-            padding-bottom: 20px;
+            padding-bottom: 35px;
+        }
+
+        .page-title {
+            font-family: "Times New Roman", Times, serif;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo-title {
+            font-family: 'Roboto', sans-serif;
+            color: #172366;
+            margin: 0;
         }
     </style>
 </head>
@@ -62,14 +89,15 @@
 <div style="display:inline;">
     <div class="column1" style="background-color:#edf0f3;">
         <div style="text-align: center; height: 60px; padding-top: 36px">
-            <img src="https://raw.githubusercontent.com/kms-haohuynh/hms-report-template/master/vinpearl-logo-01.png" width="80px" height="50px" />
+            <img src="https://raw.githubusercontent.com/kms-haohuynh/hms-report-template/master/vinpearl-logo-01.png"
+                 width="80px" height="50px"/>
         </div>
-        <div style="height: 40px; padding-bottom: 30px; text-align: center; font-size: 9px;">
+        <div style="height: 40px; padding-bottom: 30px; text-align: center; font-size: 9px">
             <p class="logo-title">PHU QUOC PARADISE RESORT &amp; VILLAS </p>
         </div>
         <div class="spacing-between-div">
             <p class="titleLeft">Message For:</p>
-            <p class="valueLeft" th:text="${reportInfo[0].messageTo}" >Message For:</p>
+            <p class="valueLeft" th:text="${reportInfo[0].messageTo}">Message For:</p>
         </div>
         <div class="spacing-between-div">
             <p class="titleLeft">Message From:</p>
@@ -77,7 +105,7 @@
         </div>
         <div class="spacing-between-div" th:if="${!reportInfo[0].isMessageForGroup}">
             <p class="titleLeft">Room:</p>
-            <p class="valueLeft" th:text="${reportInfo[0].roomNumber}"></p>
+            <p class="valueLeft" th:text="${reportInfo[0].roomNumber}">1622</p>
         </div>
         <div class="spacing-between-div">
             <p class="titleLeft">Company:</p>
@@ -89,15 +117,18 @@
         </div>
         <div class="spacing-between-div">
             <p class="titleLeft">Created At:</p>
-            <p class="valueLeft" th:text="${reportInfo[0].createdAt}"></p>
+            <p class="valueLeft" th:text="${reportInfo[0].createdAt}">03:14 19/09/2019</p>
         </div>
     </div>
     <div class="column2">
-        <div style="text-align: center; font-size: 24px; font-weight: 700;">
+        <div class="page-title">
             <p>GUEST MESSAGE</p>
         </div>
+        <div>
+            <p style="font-size: 16px; padding-left: 25px; padding-right: 25px; margin: 10px 0;" th:text="${!reportInfo[0].isMessageForGroup ? reportInfo[0].messageTo + ',' : 'Dear Sir or Madam,'} ">Dear Trang,</p>
+        </div>
         <div style="font-size: 16px; padding-left: 25px; padding-right: 25px;">
-            <div th:utext="${reportInfo[0].message}">Dear Trang,I write this email in order to let you know
+            <p style="text-align: justify" th:utext="${reportInfo[0].message}">I write this email in order to let you know
                 that I am very sorry for canceling our appointment
                 yesterday without informing you sooner. I know this is
                 my entire fault, but I hope you give me one chance to
@@ -105,13 +136,14 @@
                 sudden it started to rain. I did not have my raincoat
                 with me, so I was as wet as a towel that you put in
                 water. I am truly sorry Please reply me as soon as you
-                feel better Love, Nha.</div>
+                feel better Love, Nha.
+            </p>
         </div>
         <div>
-            <p style="font-size: 16px; padding-left: 25px; padding-right: 25px;">Regards,</p>
+            <p style="font-size: 16px; padding-left: 25px; padding-right: 25px; margin: 10px 0;">Regards,</p>
         </div>
         <div>
-            <p style="font-size: 16px; padding-left: 25px; padding-right: 25px;">Front Desk</p>
+            <p style="font-size: 16px; padding-left: 25px; padding-right: 25px; margin: 10px 0;">Front Desk</p>
         </div>
     </div>
 </div>
