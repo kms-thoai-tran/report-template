@@ -1,152 +1,161 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="UTF-8"/>
     <style>
-        @font-face {
-            font-family: 'IBM Plex Sans';
-            font-weight: normal;
-            font-style: normal;
-            src: url(https://raw.githubusercontent.com/IBM/plex/master/IBM-Plex-Sans/fonts/complete/ttf/IBMPlexSans-Light.ttf);
-        }
-
-        @font-face {
-            font-family: 'Roboto';
-            font-weight: normal;
-            font-style: normal;
-            src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu72xKOzY.woff2) format('woff2');
-        }
-
-        @page {
-            margin: 0;
-            size: A4 portrait;
-            -fs-page-orientation: portrait;
-            @bottom-center {
-                content: 'Page ' counter(page);
-            }
-        }
-
-        .column1 {
-            float: left;
-            width: 30%;
-            height: 100%;
-            display: inline;
-        }
-
-        .column2 {
-            float: left;
-            width: 70%;
-            padding-top: 140px;
-            display: inline;
-        }
-
-        html, body {
-            font-size: 12px;
-            font-family: 'IBM Plex Sans', sans-serif;
-            color: #3E4345;
-            padding: 0;
-            height: 100%;
-            margin: 0;
-        }
-
-        .titleLeft {
-            font-size: 14px;
-            height: 18px;
-            margin: 0;
-            padding-left: 25px;
-            padding-right: 25px;
-        }
-
-        .valueLeft {
-            font-size: 16px;
-            height: 20px;
-            font-weight: 600;
-            color: #000000;
-            margin: 0;
-            padding-left: 25px;
-            padding-right: 25px;
-        }
-
-        .spacing-between-div {
-            padding-bottom: 35px;
-        }
-
-        .page-title {
-            font-family: "Times New Roman", Times, serif;
-            text-align: center;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .logo-title {
-            font-family: 'Roboto', sans-serif;
-            color: #172366;
-            margin: 0;
-        }
-    </style>
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-weight: normal;
+      font-style: normal;
+      src: url(https://raw.githubusercontent.com/IBM/plex/master/IBM-Plex-Sans/fonts/complete/ttf/IBMPlexSans-Light.ttf);
+    }
+    @font-face {
+      font-family: 'IBM Plex Sans';
+      font-weight: bold;
+      font-style: normal;
+      src: url(https://raw.githubusercontent.com/IBM/plex/master/IBM-Plex-Sans/fonts/complete/ttf/IBMPlexSans-Bold.ttf);
+    }
+    @font-face {
+      font-family: 'Playfair Display';
+      font-weight: normal;
+      font-style: normal;
+      src: url(http://themes.googleusercontent.com/static/fonts/playfairdisplay/v7/2NBgzUtEeyB-Xtpr9bm1Cczai8e7xzqnKiVb1EwOy0E.ttf);
+    }
+    @page {
+      margin: 20px;
+      margin-bottom: 30px;
+      size: A4 landscape;
+      font-family: 'IBM Plex Sans', sans-serif;
+      @bottom-center {
+        font-family: 'IBM Plex Sans', sans-serif;
+        content: 'Page ' counter(page);
+        font-size: 12px;
+      }
+    }
+    html, body {
+      font-size: 10px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      color: #000000;
+    }
+    .container {
+      display: block;
+      min-height: 90vh;
+      padding: 1.5em 3em;
+    }
+    header {
+      display: block;
+      margin-bottom: 0.5em;
+    }
+    header img {
+      width: 8.9em;
+      height: 5.6em;
+      display: block;
+      margin-bottom: 0.7em;
+    }
+    header .page-title {
+      margin: auto;
+      font-family: 'Playfair Display', serif;
+      color: #000000;
+      text-transform: uppercase;
+      font-size: 26px;
+      margin-bottom: -3px;
+      margin-top: -32px;
+      text-align: center;
+    }
+    .logo .logo-title {
+      color: #2B3A8B;
+      font-weight: bold;
+      font-size: 12px;
+    }
+    footer {
+      text-align: center;
+    }
+    footer .page-number {
+      color: #919699;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+    }
+    main {
+      width: 100%;
+      height: 100%;
+    }
+    main .report-info {
+      margin: 3.3em 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      border: 0.1px solid black;
+    }
+    table, td {
+      border: 0.1px solid black;
+    }
+    th, td {
+      padding: 0.85em;
+      font-style: normal;
+      font-weight: normal;
+      border: 0.1px solid black;
+    }
+    th {
+      text-align: left;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-<div style="display:inline;">
-    <div class="column1" style="background-color:#edf0f3;">
-        <div style="text-align: center; height: 60px; padding-top: 36px">
-            <img th:src="${logo}"
-                 width="80px" height="50px"/>
+<div class="container">
+    <header>
+        <div class="logo">
+            <div style="display: inline-block; width: 33.33%;">
+                <img th:src="${logo}"/>
+                <span class="logo-title" th:text="${propertyName}">PHU QUOC PARADISE RESORT &amp; VILLAS</span>
+            </div>
+            <div style="display: inline-block; width: 33.33%;">
+                <h1 class="page-title">RESERVATION TRACES</h1>
+            </div>
         </div>
-        <div style="height: 40px; padding-bottom: 30px; text-align: center; font-size: 9px">
-            <p class="logo-title" th:text="${propertyName}">PHU QUOC PARADISE RESORT &amp; VILLAS </p>
-        </div>
-        <div class="spacing-between-div">
-            <p class="titleLeft">Message For:</p>
-            <p class="valueLeft" th:text="${reportInfo[0].messageTo}">Message For:</p>
-        </div>
-        <div class="spacing-between-div">
-            <p class="titleLeft">Message From:</p>
-            <p class="valueLeft" th:text="${reportInfo[0].messageFrom}">Message From</p>
-        </div>
-        <div class="spacing-between-div" th:if="${!reportInfo[0].isMessageForGroup}">
-            <p class="titleLeft">Room:</p>
-            <p class="valueLeft" th:text="${reportInfo[0].roomNumber}">1622</p>
-        </div>
-        <div class="spacing-between-div">
-            <p class="titleLeft">Company:</p>
-            <p class="valueLeft" th:text="${reportInfo[0].company}">Company</p>
-        </div>
-        <div class="spacing-between-div">
-            <p class="titleLeft">Phone Number:</p>
-            <p class="valueLeft" th:text="${reportInfo[0].phone}">Phone</p>
-        </div>
-        <div class="spacing-between-div">
-            <p class="titleLeft">Created At:</p>
-            <p class="valueLeft" th:text="${reportInfo[0].createdAt}">03:14 19/09/2019</p>
-        </div>
-    </div>
-    <div class="column2">
-        <div class="page-title">
-            <p>GUEST MESSAGE</p>
-        </div>
-        <div>
-            <p style="font-size: 16px; padding-left: 40px; padding-right: 40px; margin: 10px 0;"
-               th:text="${!reportInfo[0].isMessageForGroup ? 'Dear ' + #strings.replace(reportInfo[0].messageTo, ',', '') + ',' : 'Dear Sir or Madam,'} ">Dear Trang,</p>
-        </div>
-        <div style="font-size: 16px; padding-left: 40px; padding-right: 40px;">
-            <p style="text-align: justify" th:utext="${reportInfo[0].message}">I write this email in order to let you know
-                that I am very sorry for canceling our appointment
-                yesterday without informing you sooner. I know this is
-                my entire fault, but I hope you give me one chance to
-                explain the reason. I was on my way when all of a
-                sudden it started to rain. I did not have my raincoat
-                with me, so I was as wet as a towel that you put in
-                water. I am truly sorry Please reply me as soon as you
-                feel better Love, Nha.
-            </p>
-        </div>
-        <div>
-            <p style="font-size: 16px; padding-left: 40px; padding-right: 40px; margin: 10px 0;">Regards,</p>
-        </div>
-        <div>
-            <p style="font-size: 16px; padding-left: 40px; padding-right: 40px; margin: 10px 0;">Front Desk</p>
-        </div>
-    </div>
+    </header>
+    <main>
+        <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
+            <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none; font-weight: bold" th:text="'Trace Date: ' + ${todayFormat}">
+                Trace Date: 01/06/19
+            </td>
+            <td class="report-date" style="background-color: white;text-align: right;padding: 0px;border: none; font-weight: bold" th:text="'Export Date: ' + ${reportDateFormat}">
+                Export Date: 12:00 - 09/06/19
+            </td>
+        </tr></table>
+
+        <table cellspacing="0" cellpadding="0">
+            <thead>
+            <tr>
+                <th style="width: 80px">Conf. No.</th>
+                <th style="width: 80px">Res. Status</th>
+                <th style="width: 40px">Room</th>
+                <th style="width: 140px">Guest</th>
+                <th style="width: 200px">Trace</th>
+                <th style="width: 60px">Trace Time</th>
+                <th style="width: 60px">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:remove="tag" th:each="report_info: ${reportInfo}">
+                <tr>
+                    <td colspan="7" style="font-weight: bold;" th:text="${report_info?.departmentName}"></td>
+                </tr>
+                <tr th:each="trace: ${report_info.traces}">
+                    <td th:text="${trace?.itineraryNumber}"></td>
+                    <td th:text="${trace?.reservationStatus}"></td>
+                    <td th:text="${trace?.roomNumber}"></td>
+                    <td>Test</td>
+                    <td th:text="${trace?.trace}"></td>
+                    <td th:text="${trace?.time}"></td>
+                    <td th:text="${trace?.status}"></td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+    </main>
 </div>
 </body>
 </html>
