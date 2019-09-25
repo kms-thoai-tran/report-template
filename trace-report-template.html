@@ -143,7 +143,7 @@
                     <td colspan="7" style="font-weight: bold;" th:text="${'Department ' + report_info?.departmentName}"></td>
                 </tr>
                 <tr th:each="trace: ${report_info.traces}">
-                    <td th:text="${trace?.itineraryNumber}"></td>
+                    <td th:text="${trace?.confirmationNumber}"></td>
                     <td th:text="${trace?.reservationStatus}"></td>
                     <td th:text="${trace?.roomNumber}"></td>
                     <td th:text="${trace?.guestName}"></td>
