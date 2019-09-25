@@ -141,7 +141,7 @@
       <tbody>
       <div th:remove="tag" th:each="report_info: ${reportInfo}">
         <tr>
-          <td colspan="7" style="font-weight: bold;" th:text="${report_info?.departmentName}"></td>
+          <td colspan="7" style="font-weight: bold;" th:text="${'Department ' + report_info?.departmentName}"></td>
         </tr>
         <tr th:each="trace: ${report_info.traces}">
           <td th:text="${trace?.itineraryNumber}"></td>
