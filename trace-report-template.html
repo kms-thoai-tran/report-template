@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <style>
+    <meta charset="UTF-8"/>
+    <style>
     @font-face {
       font-family: 'IBM Plex Sans';
       font-weight: normal;
@@ -104,57 +104,56 @@
 </head>
 <body>
 <div class="container">
-  <header>
-    <div class="logo">
-      <div style="display: inline-block; width: 33.33%;">
-        <img th:src="${logo}"/>
-        <span class="logo-title" th:text="${propertyName}">PHU QUOC PARADISE RESORT &amp; VILLAS</span>
-      </div>
-      <div style="display: inline-block; width: 33.33%;">
-        <h1 class="page-title" th:text="${reportName}">RESERVATION TRACES</h1>
-      </div>
-    </div>
-  </header>
-  <main>
-    <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
-      <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none; font-weight: bold" th:text="'Trace Date: ' + ${traceDate}">
-        Trace Date: 01/06/19
-      </td>
-      <td class="report-date" style="background-color: white;text-align: right;padding: 0px;border: none; font-weight: bold" th:text="'Export Date: ' + ${exportDateFormat}">
-        Export Date: 12:00 - 09/06/19
-      </td>
-    </tr></table>
+    <header>
+        <div class="logo">
+            <div style="display: inline-block; width: 33.33%;">
+                <img th:src="${logo}"/>
+            </div>
+            <div style="display: inline-block; width: 33.33%;">
+                <h1 class="page-title">RESERVATION TRACES</h1>
+            </div>
+        </div>
+    </header>
+    <main>
+        <table class="report-info" cellspacing="0" cellpadding="0" style="border: none; background-color: white;"><tr>
+            <td class="filter-date" style="background-color: white; text-align: left; padding: 0px; border: none; font-weight: bold" th:text="'Trace Date: ' + ${exportDateFormat}">
+                Trace Date: 01/06/19
+            </td>
+            <td class="report-date" style="background-color: white;text-align: right;padding: 0px;border: none; font-weight: bold" th:text="'Export Date: ' + ${reportDateFormat}">
+                Export Date: 12:00 - 09/06/19
+            </td>
+        </tr></table>
 
-    <table cellspacing="0" cellpadding="0">
-      <thead>
-      <tr>
-        <th style="width: 80px">Conf. No.</th>
-        <th style="width: 80px">Res. Status</th>
-        <th style="width: 40px">Room</th>
-        <th style="width: 140px">Guest</th>
-        <th style="width: 200px">Trace</th>
-        <th style="width: 60px">Trace Time</th>
-        <th style="width: 60px">Status</th>
-      </tr>
-      </thead>
-      <tbody>
-      <div th:remove="tag" th:each="report_info: ${reportInfo}">
-        <tr>
-          <td colspan="7" style="font-weight: bold;" th:text="${report_info?.department}"></td>
-        </tr>
-        <tr th:with="trace=${report_info.traces}">
-          <td th:text="${trace?.confirmationNumber}"></td>
-          <td th:text="${trace?.resStatus}"></td>
-          <td th:text="${trace?.room}"></td>
-          <td th:text="${trace?.lastName != null ? trace?.lastName +', ' + trace?.firstName : ''}"></td>
-          <td th:text="${trace?.trace}"></td>
-          <td th:text="${trace?.time}"></td>
-          <td th:text="${trace?.status}"></td>
-        </tr>
-      </div>
-      </tbody>
-    </table>
-  </main>
+        <table cellspacing="0" cellpadding="0">
+            <thead>
+            <tr>
+                <th style="width: 80px">Conf. No.</th>
+                <th style="width: 80px">Res. Status</th>
+                <th style="width: 40px">Room</th>
+                <th style="width: 140px">Guest</th>
+                <th style="width: 200px">Trace</th>
+                <th style="width: 60px">Trace Time</th>
+                <th style="width: 60px">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:remove="tag" th:each="report_info: ${reportInfo}">
+                <tr>
+                    <td colspan="7" style="font-weight: bold;" th:text="${'Department ' + report_info?.departmentName}"></td>
+                </tr>
+                <tr th:each="trace: ${report_info.traces}">
+                    <td th:text="${trace?.confirmationNumber}"></td>
+                    <td th:text="${trace?.reservationStatus}"></td>
+                    <td th:text="${trace?.roomNumber}"></td>
+                    <td th:text="${trace?.guestName}"></td>
+                    <td th:text="${trace?.trace}"></td>
+                    <td th:text="${trace?.time}"></td>
+                    <td th:text="${trace?.status}"></td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+    </main>
 </div>
 </body>
 </html>
