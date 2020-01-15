@@ -89,6 +89,7 @@
         width: 100%;
         border: 0.1px solid black;
         -fs-table-paginate: paginate;
+         page-break-inside: auto
       }
       table, td {
         border: 0.1px solid black;
@@ -103,6 +104,20 @@
         text-align: left;
         font-weight: bold;
       }
+      table tr:nth-child(odd) {
+        background-color:#eee;
+       }
+
+      table tr:nth-child(even){
+        background-color:white;
+      }
+      table tr:nth-child(1){
+        background-color:white;
+      }
+      tr {
+        page-break-inside: avoid;
+        page-break-after: auto
+       }
     </style>
 </head>
 <body>
