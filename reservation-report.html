@@ -56,9 +56,9 @@
       header .page-title {
         margin: auto;
         font-family: 'Playfair Display', serif;
-        color: #000000;
+        color: #3E4345;
         text-transform: uppercase;
-        font-size: 26px;
+        font-size: 2.5em;
         margin-bottom: -3px;
         margin-top: -32px;
         text-align: center;
@@ -87,36 +87,28 @@
       table {
         border-collapse: collapse;
         width: 100%;
-        border: 0.1px solid black;
         -fs-table-paginate: paginate;
          page-break-inside: auto
-      }
-      table, td {
-        border: 0.1px solid black;
       }
       th, td {
         padding: 0.85em;
         font-style: normal;
         font-weight: normal;
-        border: 0.1px solid black;
       }
       th {
         text-align: left;
         font-weight: bold;
       }
-      table div:nth-child(odd) {
-        background-color:#eee;
-       }
-
-      table div:nth-child(even){
-        background-color:white;
-      }
-      table tr:nth-child(1){
-        background-color:white;
-      }
       tr {
         page-break-inside: avoid;
         page-break-after: auto
+       }
+       .odd {
+          background-color:#eee;
+       }
+       .tabletitle th {
+          text-align: left;
+          border-bottom: 1px solid #000;
        }
     </style>
 </head>
@@ -151,7 +143,7 @@
     <main>
         <table cellspacing="0" cellpadding="0">
             <thead>
-            <tr>
+            <tr class="tabletitle">
                 <th style="text-align: right; width: 20px">No.</th>
                 <th style="width: 80px">Conf. No.</th>
                 <th style="width: 130px">Travel Agent / Company</th>
@@ -171,37 +163,37 @@
             <tbody>
             <div th:remove="tag" th:each="report_info: ${reportInfo}"
                  th:with="guestProfileCount=${report_info.guestProfiles.size()}, rowSpanColumn=${report_info?.numberOfAdult > report_info.guestProfiles.size() ? report_info.guestProfiles.size() + 1 : report_info.guestProfiles.size()}">
-                <tr>
-                    <td style="text-align: right;" th:text="${report_infoStat.count}" th:rowspan="${rowSpanColumn}">1</td>
+                <tr th:classappend="${report_infoStat.count % 2} == 0 ? odd : even">
+                    <td th:text="${report_infoStat.count}" th:rowspan="${rowSpanColumn}">1</td>
                     <td th:text="${report_info?.confirmationNumber}" th:rowspan="${rowSpanColumn}"></td>
                     <td th:rowspan="${rowSpanColumn}" th:text="${report_info.travelAgentProfileName != '' ? report_info.travelAgentProfileName : report_info.companyProfileName}"></td>
-                    <td th:rowspan="${rowSpanColumn}" style="text-align: right;" th:text="${report_info?.roomName}"></td>
+                    <td th:rowspan="${rowSpanColumn}" th:text="${report_info?.roomName}"></td>
                     <td th:rowspan="${rowSpanColumn}" th:text="${report_info?.roomType}"></td>
-                    <td style=" border-bottom: none;" th:text="${guestProfileCount > 0 ? report_info.guestProfiles[0].vipCode : ''}">
+                    <td th:text="${guestProfileCount > 0 ? report_info.guestProfiles[0].vipCode : ''}">
                     </td>
-                    <td style=" border-bottom: none;" th:text="${guestProfileCount > 0 ? report_info.guestProfiles[0].country : ''}">
+                    <td th:text="${guestProfileCount > 0 ? report_info.guestProfiles[0].country : ''}">
                     </td>
-                    <td style=" border-bottom: none;" th:text="${guestProfileCount > 0 ? report_info.guestProfiles[0]?.lastName != null ? report_info.guestProfiles[0]?.lastName +', ' + report_info.guestProfiles[0]?.firstName : '' : ''}">
+                    <td th:text="${guestProfileCount > 0 ? report_info.guestProfiles[0]?.lastName != null ? report_info.guestProfiles[0]?.lastName +', ' + report_info.guestProfiles[0]?.firstName : '' : ''}">
                     </td>
                     <td th:rowspan="${rowSpanColumn}" th:text="${report_info.arrivalDateFormat}">04-09-2019</td>
                     <td th:rowspan="${rowSpanColumn}" th:text="${report_info.departureDateFormat}">05-09-2019</td>
-                    <td th:rowspan="${rowSpanColumn}" style="text-align: right;" th:text="${report_info?.numberOfAdult}">0</td>
-                    <td th:rowspan="${rowSpanColumn}" style="text-align: right;" th:text="${report_info?.numberOfChild}">0</td>
-                    <td th:rowspan="${rowSpanColumn}" style="text-align: right;" th:text="${report_info?.numberOfInfant}">0</td>
+                    <td th:rowspan="${rowSpanColumn}" th:text="${report_info?.numberOfAdult}">0</td>
+                    <td th:rowspan="${rowSpanColumn}" th:text="${report_info?.numberOfChild}">0</td>
+                    <td th:rowspan="${rowSpanColumn}" th:text="${report_info?.numberOfInfant}">0</td>
                     <td th:rowspan="${rowSpanColumn}" th:text="${report_info?.status}">Arrival</td>
                 </tr>
-                <tr th:each="guest_profile,stats: ${report_info.guestProfiles}" th:if="${!stats.first}">
-                    <td style="border-top: none; border-bottom: none;border-left: none;border-right: none;" th:text="${guest_profile.get('vipCode')}">Bahrain</td>
-                    <td style="border-top: none; border-bottom: none;border-left: 0.1px solid #c5c5c5; border-right: none;" th:text="${guest_profile.get('country')}">Bahrain</td>
-                    <td style="border-top: none; border-bottom: none; border-left: 0.1px solid #c5c5c5; border-right: none;" th:text="${guest_profile.get('lastName')} != null ? ${guest_profile.get('lastName')} +', ' + ${guest_profile.get('firstName')}">FirstName</td>
+                <tr th:classappend="${report_infoStat.count % 2} == 0 ? odd : even" th:each="guest_profile,stats: ${report_info.guestProfiles}" th:if="${!stats.first}">
+                    <td th:text="${guest_profile.get('vipCode')}">Bahrain</td>
+                    <td th:text="${guest_profile.get('country')}">Bahrain</td>
+                    <td th:text="${guest_profile.get('lastName')} != null ? ${guest_profile.get('lastName')} +', ' + ${guest_profile.get('firstName')}">FirstName</td>
                 </tr>
-                <tr th:if="${report_info?.numberOfAdult > report_info.guestProfiles.size()}">
-                    <td style="border-top: none; border-bottom: none;border-left: none;border-right: none;"></td>
-                    <td style="border-top: none; border-bottom: none;border-left: 0.1px solid #c5c5c5; border-right: none;"></td>
-                    <td style="border-top: none; border-bottom: none; border-left: 0.1px solid #c5c5c5; border-right: none;" th:text="'Missing: ' + ${report_info?.numberOfAdult - report_info.guestProfiles.size()}"></td>
+                <tr th:classappend="${report_infoStat.count % 2} == 0 ? odd : even" th:if="${report_info?.numberOfAdult > report_info.guestProfiles.size()}">
+                    <td></td>
+                    <td></td>
+                    <td th:text="'Missing: ' + ${report_info?.numberOfAdult - report_info.guestProfiles.size()}"></td>
                 </tr>
             </div>
-            <tr>
+            <tr >
                 <td colspan="10" style="text-align: right; font-weight: bold;">TOTAL</td>
                 <td style="text-align: right; font-weight: bold;" th:text="${arrivalReportSummary?.totalAdult}">0</td>
                 <td style="text-align: right; font-weight: bold;" th:text="${arrivalReportSummary?.totalChild}">0</td>
